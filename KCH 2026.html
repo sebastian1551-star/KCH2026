@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karty Charakterystyki</title>
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#b71c1c">
+
+<style>
+body {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    background: #e0e0e0;
+    display: flex;
+    justify-content: center;
+}
+
+.app {
+    width: 100%;
+    max-width: 600px;
+    min-height: 100vh;
+    background: #f6f6f6;
+}
+
+/* nagłówek */
+header {
+    background: #b71c1c;
+    color: white;
+    padding: 14px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* kafelki miejsc */
+.tiles {
+    display: flex;
+    gap: 6px;
+    padding: 10px;
+    justify-content: center;
+}
+
+.tile {
+    width: 60px;
+    padding: 8px 0;
+    background: white;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,.2);
+}
+
+.tile.active {
+    background: #b71c1c;
+    color: white;
+}
+
+/* wyszukiwarka */
+.search {
+    padding: 10px;
+}
+
+.search input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    font-size: 16px;
+}
+
+/* karty */
+.card {
+    background: white;
+    margin: 10px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,.15);
+}
+
+.card-header {
+    padding: 12px;
+    font-weight: bold;
+    border-bottom: 1px solid #eee;
+}
+
+.card-content {
+    padding: 10px 14px 14px;
+}
+
+.card-content a {
+    display: block;
+    padding: 6px 0;
+    color: #b71c1c;
+    text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header>📂 Karty Charakterystyki</header>
+
+<div class="tiles">
+    <div class="tile active" onclick="setPlace('A', this)">A</div>
+    <div class="tile" onclick="setPlace('B', this)">B</div>
+    <div class="tile" onclick="setPlace('C', this)">C</div>
+</div>
+
+<div class="search">
+    <input id="search" placeholder="🔍 Szukaj karty lub PDF..." oninput="render()">
+</div>
+
+<div id="cards"></div>
+
+</div>
+
+<script>
+let currentPlace = 'A';
+
+/* ===============================
+   📦 DANE – TUTAJ DODAJESZ KARTY
+   =============================== */
+
+const DATA = [
+  {
+    place: 'A',              // A / B / C
+    cardName: 'Oleje przekładniowe',
+    files: [
+      {
+        title: 'Jasol Gear Oil GL-5 80W/90',     // nazwa PDF
+        url: 'LINK_DO_PDF_TUTAJ',               // <-- TU WKLEJ LINK
+        search: 'jasol gear oil gl5 80w90'       // słowa do wyszukiwania
+      },
+
+      {
+        title: 'Jasol Gear Oil GL-5 80W/90',     // nazwa PDF
+        url: 'LINK_DO_PDF_TUTAJ',               // <-- TU WKLEJ LINK
+        search: 'jasol gear oil gl5 80w90'       // słowa do wyszukiwania
+      }
+
+    ]
+  }
+
+  // ← możesz dodać kolejną kartę
+];
+
+/* ===============================
+   LOGIKA
+   =============================== */
+
+function setPlace(place, el) {
+    currentPlace = place;
+    document.querySelectorAll('.tile').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    render();
+}
+
+function render() {
+    const search = document.getElementById('search').value.toLowerCase();
+    const wrap = document.getElementById('cards');
+    wrap.innerHTML = '';
+
+    DATA
+      .filter(card => card.place === currentPlace)
+      .filter(card =>
+        search === '' ||
+        card.cardName.toLowerCase().includes(search) ||
+        card.files.some(f =>
+          f.title.toLowerCase().includes(search) ||
+          f.search.toLowerCase().includes(search)
+        )
+      )
+      .forEach(card => {
+        const div = document.createElement('div');
+        div.className = 'card';
+
+        div.innerHTML = `
+          <div class="card-header">${card.cardName}</div>
+          <div class="card-content">
+            ${card.files
+              .filter(f =>
+                search === '' ||
+                f.title.toLowerCase().includes(search) ||
+                f.search.toLowerCase().includes(search)
+              )
+              .map(f => `
+                <a href="${f.url}" target="_blank">📄 ${f.title}</a>
+              `).join('')}
+          </div>
+        `;
+
+        wrap.appendChild(div);
+      });
+}
+
+render();
+
+/* PWA */
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js');
+}
+</script>
+
+</body>
+</html>
