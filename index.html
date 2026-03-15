@@ -171,9 +171,25 @@
 <body>
 
     <div class="app-container">
-        <input type="text" id="search" class="search-box" placeholder="Szukaj karty lub kodu UFI...">
+        <input type="text" id="search" class="search-box" placeholder="Szukaj karty, producenta lub UFI...">
 
         <ul class="tree-container">
+            <li class="category-item">
+                <div class="category-header" onclick="toggle(this)">
+                    <span class="arrow">▶</span> BENZYNY
+                </div>
+                <ul class="submenu">
+                    <li>
+                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQBQMj9aNquXSIfMOhN0Y_7OAZB_YYoHHQXzdY2X0xBiklI?e=5p1cLX" 
+                           target="_blank" class="file-item">
+                            <div class="file-info">
+                                <span class="pdf-tag">PDF</span> BENZYNY HANDLOWE - ORLEN
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
             <li class="category-item">
                 <div class="category-header" onclick="toggle(this)">
                     <span class="arrow">▶</span> GAZY
@@ -219,6 +235,23 @@
 
             <li class="category-item">
                 <div class="category-header" onclick="toggle(this)">
+                    <span class="arrow">▶</span> ŚRODKI CZYSTOŚCI
+                </div>
+                <ul class="submenu">
+                    <li>
+                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCHUZwDgf9UTLL98DnUwOscAeOWLr7ndglaoAwF9Z2k_Bs?e=9hGHqx" 
+                           target="_blank" class="file-item">
+                            <div class="file-info">
+                                <span class="pdf-tag">PDF</span> ŚRODEK CZYSTOŚCI (Karta)
+                            </div>
+                            <div class="ufi-text">UFI: [Wpisz kod UFI tutaj]</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="category-item">
+                <div class="category-header" onclick="toggle(this)">
                     <span class="arrow">▶</span> MASA BITUMICZNA
                 </div>
                 <ul class="submenu">
@@ -251,7 +284,6 @@
                 let hasVisibleFiles = false;
 
                 items.forEach(item => {
-                    // Wyszukiwanie teraz sprawdza nazwę produktu oraz kod UFI
                     if (item.textContent.toLowerCase().includes(filter)) {
                         item.classList.remove('hidden');
                         hasVisibleFiles = true;
