@@ -12,6 +12,7 @@
             --bg-hover: #f3f2f1;
             --pdf-red: #d13438;
             --ufi-color: #ff8c00; 
+            --emergency-red: #c43131;
         }
 
         body {
@@ -30,6 +31,31 @@
             padding: 15px;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Styl kafelka alarmowego */
+        .emergency-bar {
+            background-color: var(--emergency-red);
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(196, 49, 49, 0.3);
+            transition: transform 0.1s;
+        }
+        .emergency-bar:active {
+            transform: scale(0.98);
+        }
+        .emergency-icon {
+            margin-right: 10px;
+            font-size: 18px;
         }
 
         .search-box {
@@ -173,6 +199,10 @@
 <body>
 
     <div class="app-container">
+        <a href="tel:112" class="emergency-bar">
+            <span class="emergency-icon">📞</span> RATUNEK / ALARM: 112
+        </a>
+
         <input type="text" id="search" class="search-box" placeholder="Szukaj karty, paliwa lub UFI...">
 
         <ul class="tree-container">
