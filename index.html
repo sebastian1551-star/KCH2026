@@ -11,6 +11,7 @@
             --text-color: #323130;
             --bg-hover: #f3f2f1;
             --pdf-red: #d13438;
+            --ufi-color: #605e5c;
         }
 
         body {
@@ -22,7 +23,6 @@
             padding: 15px;
         }
 
-        /* Kontener główny - szerokość mobilna, wyśrodkowany */
         .app-container {
             width: 100%;
             max-width: 400px;
@@ -32,7 +32,6 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        /* Wyszukiwarka */
         .search-box {
             width: 100%;
             box-sizing: border-box;
@@ -55,7 +54,6 @@
             margin: 0;
         }
 
-        /* Główna pionowa linia prowadząca */
         .tree-container::before {
             content: '';
             position: absolute;
@@ -72,7 +70,6 @@
             position: relative;
         }
 
-        /* Nagłówek sekcji (np. OLEJE) */
         .category-header {
             display: flex;
             align-items: center;
@@ -89,7 +86,6 @@
             background: var(--bg-hover);
         }
 
-        /* Poziome odgałęzienie od linii pionowej */
         .category-header::before {
             content: '';
             position: absolute;
@@ -110,7 +106,6 @@
             transform: rotate(90deg);
         }
 
-        /* Podmenu - schodkowe wcięcie */
         .submenu {
             display: none;
             list-style: none;
@@ -124,11 +119,10 @@
             display: block;
         }
 
-        /* Link do pliku */
         .file-item {
             padding: 8px;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             text-decoration: none;
             color: var(--text-color);
             font-size: 13px;
@@ -137,7 +131,11 @@
         }
         .file-item:hover {
             background: #f0f7ff;
-            color: var(--primary-color);
+        }
+
+        .file-info {
+            display: flex;
+            align-items: center;
         }
 
         .pdf-tag {
@@ -148,6 +146,14 @@
             border-radius: 3px;
             margin-right: 10px;
             font-weight: bold;
+        }
+
+        .ufi-text {
+            font-size: 10px;
+            color: var(--ufi-color);
+            margin-top: 4px;
+            margin-left: 32px;
+            font-family: monospace;
         }
 
         .hidden { display: none !important; }
@@ -165,59 +171,63 @@
 <body>
 
     <div class="app-container">
-        <input type="text" id="search" class="search-box" placeholder="Szukaj karty charakterystyki...">
+        <input type="text" id="search" class="search-box" placeholder="Szukaj karty lub kodu UFI...">
 
         <ul class="tree-container">
+            <li class="category-item">
+                <div class="category-header" onclick="toggle(this)">
+                    <span class="arrow">▶</span> GAZY
+                </div>
+                <ul class="submenu">
+                    <li>
+                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQDxIAOJy1IqRYd1ajIgkvqnAaZEwUsrfPrRlduOIG_6ZcQ?e=aqHwXU" 
+                           target="_blank" class="file-item">
+                            <div class="file-info">
+                                <span class="pdf-tag">PDF</span> ALPEN CAMPING GAS
+                            </div>
+                            <div class="ufi-text">UFI: J200-U029-700U-906X</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
             <li class="category-item">
                 <div class="category-header" onclick="toggle(this)">
                     <span class="arrow">▶</span> OLEJE
                 </div>
                 <ul class="submenu">
                     <li>
+                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQD8oJGhqQ94R6PC6KqHgPEHAQjeCbn487QUoHsRIoHsl3c?e=kSdkAQ" 
+                           target="_blank" class="file-item">
+                            <div class="file-info"><span class="pdf-tag">PDF</span> SHELL OMALA GX 460</div>
+                        </a>
+                    </li>
+                    <li>
                         <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCXywoAOeSTSpSZPPUdtE7LAZ-5RxEVkcpaSo2hIEZu8iU?e=P7M3jL" 
                            target="_blank" class="file-item">
-                            <span class="pdf-tag">PDF</span> BASE OIL SN 600
+                            <div class="file-info"><span class="pdf-tag">PDF</span> BASE OIL SN 600</div>
                         </a>
                     </li>
                     <li>
                         <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAkuT3PIebERJqxqZaBgMAwAZSWfYQKqdbbfdGSMLqkUcM?e=8pLcl2" 
                            target="_blank" class="file-item">
-                            <span class="pdf-tag">PDF</span> OLEJ NAPĘDOWY ORLEN
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQD8oJGhqQ94R6PC6KqHgPEHAQjeCbn487QUoHsRIoHsl3c?e=UG3Sml" 
-                           target="_blank" class="file-item">
-                            <span class="pdf-tag">PDF</span> NOWA KARTA (Link 3)
+                            <div class="file-info"><span class="pdf-tag">PDF</span> OLEJ NAPĘDOWY ORLEN</div>
                         </a>
                     </li>
                 </ul>
             </li>
 
             <li class="category-item">
-                <div class="category-header" onclick="toggle(this)">
-                    <span class="arrow">▶</span> SMARY
-                </div>
-                <ul class="submenu">
-                    <li><a href="#" class="file-item"><span class="pdf-tag">PDF</span> Przykładowy Smar</a></li>
-                </ul>
-            </li>
-
-            <li class="category-item">
-                <div class="category-header" onclick="toggle(this)">
-                    <span class="arrow">▶</span> KLEJE
-                </div>
-                <ul class="submenu">
-                    <li><a href="#" class="file-item"><span class="pdf-tag">PDF</span> Przykładowy Klej</a></li>
-                </ul>
-            </li>
-
-         <li class="category-item">
                 <div class="category-header" onclick="toggle(this)">
                     <span class="arrow">▶</span> MASA BITUMICZNA
                 </div>
                 <ul class="submenu">
-                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAqRCteLwJcT7e07skjxt0uAWG67e6Kz54EHQE3SAkzB_w?e=KuyCJ6" class="file-item"><span class="pdf-tag">PDF</span> Przykładowy Smar</a></li>
+                    <li>
+                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAqRCteLwJcT7e07skjxt0uAWG67e6Kz54EHQE3SAkzB_w?e=KuyCJ6" 
+                           target="_blank" class="file-item">
+                            <div class="file-info"><span class="pdf-tag">PDF</span> MASA BITUMICZNA</div>
+                        </a>
+                    </li>
                 </ul>
             </li>
         </ul>
@@ -241,6 +251,7 @@
                 let hasVisibleFiles = false;
 
                 items.forEach(item => {
+                    // Wyszukiwanie teraz sprawdza nazwę produktu oraz kod UFI
                     if (item.textContent.toLowerCase().includes(filter)) {
                         item.classList.remove('hidden');
                         hasVisibleFiles = true;
