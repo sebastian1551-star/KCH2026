@@ -11,8 +11,7 @@
             --text-color: #323130;
             --bg-hover: #f3f2f1;
             --pdf-red: #d13438;
-            --ufi-color: #ff8c00; 
-            --emergency-red: #c43131;
+            --ufi-color: #605e5c;
         }
 
         body {
@@ -31,31 +30,6 @@
             padding: 15px;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        /* Styl kafelka alarmowego */
-        .emergency-bar {
-            background-color: var(--emergency-red);
-            color: white;
-            padding: 10px;
-            border-radius: 8px;
-            text-align: center;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 14px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 5px rgba(196, 49, 49, 0.3);
-            transition: transform 0.1s;
-        }
-        .emergency-bar:active {
-            transform: scale(0.98);
-        }
-        .emergency-icon {
-            margin-right: 10px;
-            font-size: 18px;
         }
 
         .search-box {
@@ -175,13 +149,12 @@
         }
 
         .ufi-text {
-            font-size: 11px;
+            font-size: 10px;
             color: var(--ufi-color);
             margin-top: 4px;
             margin-left: 32px;
-            font-family: 'Segoe UI', sans-serif;
-            font-weight: 800;
-            word-break: break-all;
+            font-family: monospace;
+            line-height: 1.2;
         }
 
         .hidden { display: none !important; }
@@ -199,39 +172,9 @@
 <body>
 
     <div class="app-container">
-        <a href="tel:112" class="emergency-bar">
-            <span class="emergency-icon">📞</span> RATUNEK / ALARM: 112
-        </a>
-
-        <input type="text" id="search" class="search-box" placeholder="Szukaj karty, paliwa lub UFI...">
+        <input type="text" id="search" class="search-box" placeholder="Szukaj karty lub kodu UFI...">
 
         <ul class="tree-container">
-            <li class="category-item">
-                <div class="category-header" onclick="toggle(this)">
-                    <span class="arrow">▶</span> BENZYNY
-                </div>
-                <ul class="submenu">
-                    <li>
-                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQBQMj9aNquXSIfMOhN0Y_7OAZB_YYoHHQXzdY2X0xBiklI?e=5p1cLX" 
-                           target="_blank" class="file-item">
-                            <div class="file-info">
-                                <span class="pdf-tag">PDF</span> BENZYNA 95, 98, EUROSUPER, SUPER PLUS
-                            </div>
-                            <div class="ufi-text">UFI: 1V30-Q0VS-G00H-KEX6</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQBQMj9aNquXSIfMOhN0Y_7OAZB_YYoHHQXzdY2X0xBiklI?e=5p1cLX" 
-                           target="_blank" class="file-item">
-                            <div class="file-info">
-                                <span class="pdf-tag">PDF</span> EFECTA 95, VERVA 98
-                            </div>
-                            <div class="ufi-text">UFI: YY30-70K5-T000-8SH8</div>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
             <li class="category-item">
                 <div class="category-header" onclick="toggle(this)">
                     <span class="arrow">▶</span> GAZY
@@ -246,30 +189,57 @@
                             <div class="ufi-text">UFI: J200-U029-700U-906X</div>
                         </a>
                     </li>
+                    <li>
+                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQC91rQWcaCwRabOn3tiQ4prAfzW9zAby4K7ehxXUI3aq3M?e=QwlfJB" 
+                           target="_blank" class="file-item">
+                            <div class="file-info">
+                                <span class="pdf-tag">PDF</span> ACETYLEN
+                            </div>
+                        </a>
+                    </li>
                 </ul>
             </li>
 
             <li class="category-item">
                 <div class="category-header" onclick="toggle(this)">
-                    <span class="arrow">▶</span> OLEJE
+                    <span class="arrow">▶</span> OLEJE I PALIWA
                 </div>
                 <ul class="submenu">
                     <li>
-                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQD8oJGhqQ94R6PC6KqHgPEHAQjeCbn487QUoHsRIoHsl3c?e=kSdkAQ" 
+                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAkuT3PIebERJqxqZaBgMAwAZSWfYQKqdbbfdGSMLqkUcM?e=DnGFwy" 
                            target="_blank" class="file-item">
-                            <div class="file-info"><span class="pdf-tag">PDF</span> SHELL OMALA GX 460</div>
+                            <div class="file-info"><span class="pdf-tag">PDF</span> OLEJ NAPĘDOWY (ON)</div>
+                            <div class="ufi-text" style="font-size: 8px;">
+                                UFI: A830-6020-C002-Y1UR / CC30-P0RD-N00J-MDET<br>
+                                JS30-706D-6001-X3C4 / HF30-60ES-Y001-9R0V<br>
+                                1H30-Q046-800J-X2KX / VM30-60TK-K001-ME60<br>
+                                6Q30-Q0GY-V00H-8RS2 / Q450-Q03A-800D-RXQS
+                            </div>
                         </a>
                     </li>
                     <li>
-                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCXywoAOeSTSpSZPPUdtE7LAZ-5RxEVkcpaSo2hIEZu8iU?e=P7M3jL" 
+                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQBQMj9aNquXSIfMOhN0Y_7OAZB_YYoHHQXzdY2X0xBiklI?e=fAbvr8" 
+                           target="_blank" class="file-item">
+                            <div class="file-info">
+                                <span class="pdf-tag">PDF</span> BENZYNA BEZOŁOWIOWA 95/98
+                            </div>
+                            <div class="ufi-text">
+                                UFI: 1V30-Q0VS-G00H-KEX6<br>
+                                UFI: YY30-70K5-T000-8SH8
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCXywoAOeSTSpSZPPUdtE7LAZ-5RxEVkcpaSo2hIEZu8iU?e=J8gBtS" 
                            target="_blank" class="file-item">
                             <div class="file-info"><span class="pdf-tag">PDF</span> BASE OIL SN 600</div>
                         </a>
                     </li>
                     <li>
-                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAkuT3PIebERJqxqZaBgMAwAZSWfYQKqdbbfdGSMLqkUcM?e=8pLcl2" 
+                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQD8oJGhqQ94R6PC6KqHgPEHAQjeCbn487QUoHsRIoHsl3c?e=hjlTHY" 
                            target="_blank" class="file-item">
-                            <div class="file-info"><span class="pdf-tag">PDF</span> OLEJ NAPĘDOWY ORLEN</div>
+                            <div class="file-info"><span class="pdf-tag">PDF</span> SHELL OMALA S4 GX 460</div>
+                            <div class="ufi-text">Kod produktu: 001D7853</div>
                         </a>
                     </li>
                 </ul>
@@ -277,83 +247,15 @@
 
             <li class="category-item">
                 <div class="category-header" onclick="toggle(this)">
-                    <span class="arrow">▶</span> PIANY
+                    <span class="arrow">▶</span> SPREJE I PREPARATY
                 </div>
                 <ul class="submenu">
                     <li>
-                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCizG8QKR8yT5pvwUQ3IMrRAV2GnjzM33tKPo-r9rFiPEA?e=qhVQE6" 
+                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQA9wrnLW9U7TK76CIoaK9uYAUjbpwuMCpBOX2HFLZX7lS0?e=Xbut0I" 
                            target="_blank" class="file-item">
                             <div class="file-info">
-                                <span class="pdf-tag">PDF</span> PIANA MONTAŻOWA
+                                <span class="pdf-tag">PDF</span> PREPARAT ALUCYNK
                             </div>
-                            <div class="ufi-text">UFI: 1QGX-98Y6-U00R-MKPN</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCDvfv5Lnn4SpLeSWd5Ru8DAXmewke8x0yT0paduTBc8cE?e=sfQ3nR" 
-                           target="_blank" class="file-item">
-                            <div class="file-info">
-                                <span class="pdf-tag">PDF</span> SIKA BOOM-583
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="category-item">
-                <div class="category-header" onclick="toggle(this)">
-                    <span class="arrow">▶</span> ROZCIEŃCZALNIKI
-                </div>
-                <ul class="submenu">
-                    <li>
-                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQDdOlIGGpCkRbj73RlJk9xkAXRhTdG7cAe1-sf7LV1rWkc?e=SmA9XW" 
-                           target="_blank" class="file-item">
-                            <div class="file-info">
-                                <span class="pdf-tag">PDF</span> MALSOLWENT 1
-                            </div>
-                            <div class="ufi-text">UFI: 0300-F0N9-P001-GF7F</div>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="category-item">
-                <div class="category-header" onclick="toggle(this)">
-                    <span class="arrow">▶</span> SMARY
-                </div>
-                <ul class="submenu">
-                    <li>
-                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAW_y-cWDDEQqpGDF2-fGBsAYQz3m-whf_BaR60946lVy0?e=LADdvC" 
-                           target="_blank" class="file-item">
-                            <div class="file-info">
-                                <span class="pdf-tag">PDF</span> WD-40
-                            </div>
-                            <div class="ufi-text">UFI: HQ60-80EF-FOOK-92TP</div>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="category-item">
-                <div class="category-header" onclick="toggle(this)">
-                    <span class="arrow">▶</span> ŚRODKI CZYSTOŚCI
-                </div>
-                <ul class="submenu">
-                    <li>
-                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCHUZwDgf9UTLL98DnUwOscAeOWLr7ndglaoAwF9Z2k_Bs?e=9hGHqx" 
-                           target="_blank" class="file-item">
-                            <div class="file-info">
-                                <span class="pdf-tag">PDF</span> CLEANER PU
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQBYxnGEwHNIRoTIF81zxjhiAfMhdYaz65oHML3N2YDs_r8?e=jcFlvK" 
-                           target="_blank" class="file-item">
-                            <div class="file-info">
-                                <span class="pdf-tag">PDF</span> DENATURAT D7 - DOM PŁYNÓW
-                            </div>
-                            <div class="ufi-text">UFI: W8N0-D0NC-W00N-XFFF</div>
                         </a>
                     </li>
                 </ul>
@@ -368,6 +270,23 @@
                         <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAqRCteLwJcT7e07skjxt0uAWG67e6Kz54EHQE3SAkzB_w?e=KuyCJ6" 
                            target="_blank" class="file-item">
                             <div class="file-info"><span class="pdf-tag">PDF</span> MASA BITUMICZNA</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="category-item">
+                <div class="category-header" onclick="toggle(this)">
+                    <span class="arrow">▶</span> BETONY I ZAPRAWY
+                </div>
+                <ul class="submenu">
+                    <li>
+                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCQlMDPob9YQbns2TWNeEpFAZHvqWKDjvbKFQbNC5Q5Ppo?e=slAfGh" 
+                           target="_blank" class="file-item">
+                            <div class="file-info">
+                                <span class="pdf-tag">PDF</span> MIESZANKA BETONOWA / CEMENTOWA
+                            </div>
+                            <div class="ufi-text">UFI: EJS2-40Q2-600G-MD7W</div>
                         </a>
                     </li>
                 </ul>
