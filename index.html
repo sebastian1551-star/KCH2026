@@ -7,9 +7,7 @@
     <style>
         :root {
             --primary-color: #0078d4;
-            --line-color: #0078d4;
             --text-color: #323130;
-            --bg-hover: #f3f2f1;
             --pdf-red: #d13438;
             --ufi-orange: #ff8c00; 
         }
@@ -69,20 +67,39 @@
 
         .category-header {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            padding: 12px;
+            padding: 12px 15px;
             cursor: pointer;
             font-weight: 700;
             background: #f9f9f9;
             border-radius: 6px;
             user-select: none;
+            transition: background 0.2s;
+        }
+
+        .category-header:hover {
+            background: #f0f0f0;
+        }
+
+        /* Stylizacja strzałki */
+        .arrow {
+            font-size: 12px;
+            transition: transform 0.3s ease;
+            color: #666;
+        }
+
+        /* Obrót strzałki gdy kategoria jest aktywna */
+        .active .arrow {
+            transform: rotate(180deg);
         }
 
         .submenu {
             display: none;
             list-style: none;
-            padding-left: 15px;
+            padding-left: 10px;
             margin-top: 5px;
+            border-left: 2px solid #eee;
         }
 
         .active + .submenu {
@@ -90,12 +107,12 @@
         }
 
         .file-item {
-            padding: 10px;
+            padding: 12px 10px;
             display: flex;
             flex-direction: column;
             text-decoration: none;
             color: var(--text-color);
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid #f5f5f5;
         }
 
         .pdf-tag {
@@ -137,7 +154,10 @@
 
     <ul class="tree-container">
         <li class="category-item">
-            <div class="category-header" onclick="toggle(this)">▶ GAZY</div>
+            <div class="category-header" onclick="toggle(this)">
+                <span>GAZY</span>
+                <span class="arrow">▼</span>
+            </div>
             <ul class="submenu">
                 <li>
                     <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQDxIAOJy1IqRYd1ajIgkvqnAaZEwUsrfPrRlduOIG_6ZcQ?e=aqHwXU" target="_blank" class="file-item">
@@ -155,7 +175,10 @@
         </li>
 
         <li class="category-item">
-            <div class="category-header" onclick="toggle(this)">▶ OLEJE I PALIWA</div>
+            <div class="category-header" onclick="toggle(this)">
+                <span>OLEJE I PALIWA</span>
+                <span class="arrow">▼</span>
+            </div>
             <ul class="submenu">
                 <li>
                     <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAkuT3PIebERJqxqZaBgMAwAZSWfYQKqdbbfdGSMLqkUcM?e=DnGFwy" target="_blank" class="file-item">
@@ -169,16 +192,14 @@
                         <div class="ufi-label">UFI: 1V30-Q0VS-G00H-KEX6</div>
                     </a>
                 </li>
-                <li>
-                    <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCXywoAOeSTSpSZPPUdtE7LAZ-5RxEVkcpaSo2hIEZu8iU?e=J8gBtS" target="_blank" class="file-item">
-                        <div><span class="pdf-tag">PDF</span> BASE OIL SN 600</div>
-                    </a>
-                </li>
             </ul>
         </li>
 
         <li class="category-item">
-            <div class="category-header" onclick="toggle(this)">▶ SPREJE I PREPARATY</div>
+            <div class="category-header" onclick="toggle(this)">
+                <span>SPREJE I PREPARATY</span>
+                <span class="arrow">▼</span>
+            </div>
             <ul class="submenu">
                 <li>
                     <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQBYxnGEwHNIRoTIF81zxjhiAfMhdYaz65oHML3N2YDs_r8?e=OrtbTK" target="_blank" class="file-item">
@@ -192,20 +213,18 @@
                         <div class="ufi-label">UFI: N700-U0K4-G004-9721</div>
                     </a>
                 </li>
-                <li>
-                    <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQA9wrnLW9U7TK76CIoaK9uYAUjbpwuMCpBOX2HFLZX7lS0?e=Xbut0I" target="_blank" class="file-item">
-                        <div><span class="pdf-tag">PDF</span> PREPARAT ALUCYNK</div>
-                    </a>
-                </li>
             </ul>
         </li>
 
         <li class="category-item">
-            <div class="category-header" onclick="toggle(this)">▶ MATERIAŁY BUDOWLANE</div>
+            <div class="category-header" onclick="toggle(this)">
+                <span>MATERIAŁY BUDOWLANE</span>
+                <span class="arrow">▼</span>
+            </div>
             <ul class="submenu">
                 <li>
                     <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQD65W0Sk5h-S7iPYGfYw2BeAV06HAMOirpss6OBPCvJM6E?e=huYOod" target="_blank" class="file-item">
-                        <div><span class="pdf-tag">PDF</span> MIESZANKA Betonowa / Zaprawy (Lafarge)</div>
+                        <div><span class="pdf-tag">PDF</span> MIESZANKA Betonowa (Lafarge)</div>
                         <div class="ufi-label">UFI: R800-F0QH-F008-TYR4</div>
                     </a>
                 </li>
@@ -218,16 +237,7 @@
                 <li>
                     <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQC8P-xBa2rBQ5FN6mkEMj79AWNoRjjTFaLvMEPj9Vquwck?e=Wdy2r1" target="_blank" class="file-item">
                         <div><span class="pdf-tag">PDF</span> DROHART - Spoiwo Drogowe</div>
-                        <div class="ufi-label">
-                            UFI (Żory): E000-X0R4-W005-TJD9<br>
-                            UFI (Rogowiec): 2300-F0EJ-600N-GVYC
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCQlMDPob9YQbns2TWNeEpFAZHvqWKDjvbKFQbNC5Q5Ppo?e=slAfGh" target="_blank" class="file-item">
-                        <div><span class="pdf-tag">PDF</span> MIESZANKA BETONOWA</div>
-                        <div class="ufi-label">UFI: EJS2-40Q2-600G-MD7W</div>
+                        <div class="ufi-label">UFI (Żory): E000-X0R4-W005-TJD9</div>
                     </a>
                 </li>
             </ul>
@@ -248,6 +258,7 @@
 
         categories.forEach(cat => {
             let items = cat.querySelectorAll('.file-item');
+            let header = cat.querySelector('.category-header');
             let hasVisible = false;
 
             items.forEach(item => {
@@ -262,13 +273,13 @@
             if (filter.length > 0) {
                 if (hasVisible) {
                     cat.classList.remove('hidden');
-                    cat.querySelector('.category-header').classList.add('active');
+                    header.classList.add('active');
                 } else {
                     cat.classList.add('hidden');
                 }
             } else {
                 cat.classList.remove('hidden');
-                cat.querySelector('.category-header').classList.remove('active');
+                header.classList.remove('active');
             }
         });
     });
