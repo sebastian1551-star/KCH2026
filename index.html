@@ -11,7 +11,7 @@
             --text-color: #323130;
             --bg-hover: #f3f2f1;
             --pdf-red: #d13438;
-            --ufi-color: #605e5c;
+            --ufi-orange: #ff8c00; /* Wyraźny pomarańczowy dla UFI */
         }
 
         body {
@@ -32,6 +32,25 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
+        /* Przycisk Alarmowy 112 */
+        .emergency-btn {
+            background-color: var(--pdf-red);
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 20px;
+            margin-bottom: 20px;
+            transition: opacity 0.2s;
+        }
+        .emergency-btn:active {
+            opacity: 0.8;
+        }
+
         .search-box {
             width: 100%;
             box-sizing: border-box;
@@ -41,78 +60,34 @@
             border-radius: 8px;
             font-size: 14px;
             outline: none;
-            transition: border-color 0.2s;
-        }
-        .search-box:focus {
-            border-color: var(--primary-color);
         }
 
         .tree-container {
-            position: relative;
             list-style: none;
-            padding-left: 0;
+            padding: 0;
             margin: 0;
-        }
-
-        .tree-container::before {
-            content: '';
-            position: absolute;
-            left: 8px;
-            top: 0;
-            bottom: 0;
-            width: 1px;
-            background: var(--line-color);
-            opacity: 0.3;
         }
 
         .category-item {
             margin-bottom: 8px;
-            position: relative;
         }
 
         .category-header {
             display: flex;
             align-items: center;
-            padding: 10px 10px 10px 25px;
+            padding: 12px;
             cursor: pointer;
             font-weight: 700;
-            font-size: 14px;
             background: #f9f9f9;
             border-radius: 6px;
-            transition: 0.2s;
             user-select: none;
-        }
-        .category-header:hover {
-            background: var(--bg-hover);
-        }
-
-        .category-header::before {
-            content: '';
-            position: absolute;
-            left: 8px;
-            top: 50%;
-            width: 12px;
-            height: 1px;
-            background: var(--line-color);
-        }
-
-        .arrow {
-            margin-right: 8px;
-            font-size: 10px;
-            transition: transform 0.3s;
-            color: var(--primary-color);
-        }
-        .active .arrow {
-            transform: rotate(90deg);
         }
 
         .submenu {
             display: none;
             list-style: none;
-            padding-left: 30px;
-            border-left: 1px solid #ddd;
-            margin-left: 8px;
-            margin-top: 4px;
+            padding-left: 15px;
+            margin-top: 5px;
         }
 
         .active + .submenu {
@@ -120,41 +95,30 @@
         }
 
         .file-item {
-            padding: 8px;
+            padding: 10px;
             display: flex;
             flex-direction: column;
             text-decoration: none;
             color: var(--text-color);
-            font-size: 13px;
-            border-radius: 4px;
-            transition: background 0.2s;
-        }
-        .file-item:hover {
-            background: #f0f7ff;
-        }
-
-        .file-info {
-            display: flex;
-            align-items: center;
+            border-bottom: 1px solid #f0f0f0;
         }
 
         .pdf-tag {
-            font-size: 8px;
+            font-size: 9px;
             background: var(--pdf-red);
             color: white;
-            padding: 2px 5px;
+            padding: 2px 4px;
             border-radius: 3px;
-            margin-right: 10px;
+            margin-right: 8px;
             font-weight: bold;
         }
 
-        .ufi-text {
-            font-size: 10px;
-            color: var(--ufi-color);
-            margin-top: 4px;
-            margin-left: 32px;
+        .ufi-label {
+            font-size: 11px;
+            color: var(--ufi-orange);
+            margin-top: 5px;
+            font-weight: 600;
             font-family: monospace;
-            line-height: 1.2;
         }
 
         .hidden { display: none !important; }
@@ -164,175 +128,136 @@
             text-align: center;
             font-size: 11px;
             color: #999;
-            border-top: 1px solid #eee;
             padding-top: 10px;
         }
     </style>
 </head>
 <body>
 
-    <div class="app-container">
-        <input type="text" id="search" class="search-box" placeholder="Szukaj karty lub kodu UFI...">
+<div class="app-container">
+    <a href="tel:112" class="emergency-btn">📞 POŁĄCZ Z 112</a>
 
-        <ul class="tree-container">
-            <li class="category-item">
-                <div class="category-header" onclick="toggle(this)">
-                    <span class="arrow">▶</span> GAZY
-                </div>
-                <ul class="submenu">
-                    <li>
-                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQDxIAOJy1IqRYd1ajIgkvqnAaZEwUsrfPrRlduOIG_6ZcQ?e=aqHwXU" 
-                           target="_blank" class="file-item">
-                            <div class="file-info">
-                                <span class="pdf-tag">PDF</span> ALPEN CAMPING GAS
-                            </div>
-                            <div class="ufi-text">UFI: J200-U029-700U-906X</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQC91rQWcaCwRabOn3tiQ4prAfzW9zAby4K7ehxXUI3aq3M?e=QwlfJB" 
-                           target="_blank" class="file-item">
-                            <div class="file-info">
-                                <span class="pdf-tag">PDF</span> ACETYLEN
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+    <input type="text" id="search" class="search-box" placeholder="Szukaj nazwy lub kodu UFI...">
 
-            <li class="category-item">
-                <div class="category-header" onclick="toggle(this)">
-                    <span class="arrow">▶</span> OLEJE I PALIWA
-                </div>
-                <ul class="submenu">
-                    <li>
-                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAkuT3PIebERJqxqZaBgMAwAZSWfYQKqdbbfdGSMLqkUcM?e=DnGFwy" 
-                           target="_blank" class="file-item">
-                            <div class="file-info"><span class="pdf-tag">PDF</span> OLEJ NAPĘDOWY (ON)</div>
-                            <div class="ufi-text" style="font-size: 8px;">
-                                UFI: A830-6020-C002-Y1UR / CC30-P0RD-N00J-MDET<br>
-                                JS30-706D-6001-X3C4 / HF30-60ES-Y001-9R0V<br>
-                                1H30-Q046-800J-X2KX / VM30-60TK-K001-ME60<br>
-                                6Q30-Q0GY-V00H-8RS2 / Q450-Q03A-800D-RXQS
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQBQMj9aNquXSIfMOhN0Y_7OAZB_YYoHHQXzdY2X0xBiklI?e=fAbvr8" 
-                           target="_blank" class="file-item">
-                            <div class="file-info">
-                                <span class="pdf-tag">PDF</span> BENZYNA BEZOŁOWIOWA 95/98
-                            </div>
-                            <div class="ufi-text">
-                                UFI: 1V30-Q0VS-G00H-KEX6<br>
-                                UFI: YY30-70K5-T000-8SH8
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCXywoAOeSTSpSZPPUdtE7LAZ-5RxEVkcpaSo2hIEZu8iU?e=J8gBtS" 
-                           target="_blank" class="file-item">
-                            <div class="file-info"><span class="pdf-tag">PDF</span> BASE OIL SN 600</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQD8oJGhqQ94R6PC6KqHgPEHAQjeCbn487QUoHsRIoHsl3c?e=hjlTHY" 
-                           target="_blank" class="file-item">
-                            <div class="file-info"><span class="pdf-tag">PDF</span> SHELL OMALA S4 GX 460</div>
-                            <div class="ufi-text">Kod produktu: 001D7853</div>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+    <ul class="tree-container">
+        <li class="category-item">
+            <div class="category-header" onclick="toggle(this)">▶ GAZY</div>
+            <ul class="submenu">
+                <li>
+                    <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQDxIAOJy1IqRYd1ajIgkvqnAaZEwUsrfPrRlduOIG_6ZcQ?e=aqHwXU" target="_blank" class="file-item">
+                        <div><span class="pdf-tag">PDF</span> ALPEN CAMPING GAS</div>
+                        <div class="ufi-label">UFI: J200-U029-700U-906X</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQC91rQWcaCwRabOn3tiQ4prAfzW9zAby4K7ehxXUI3aq3M?e=QwlfJB" target="_blank" class="file-item">
+                        <div><span class="pdf-tag">PDF</span> ACETYLEN</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
 
-            <li class="category-item">
-                <div class="category-header" onclick="toggle(this)">
-                    <span class="arrow">▶</span> SPREJE I PREPARATY
-                </div>
-                <ul class="submenu">
-                    <li>
-                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQA9wrnLW9U7TK76CIoaK9uYAUjbpwuMCpBOX2HFLZX7lS0?e=Xbut0I" 
-                           target="_blank" class="file-item">
-                            <div class="file-info">
-                                <span class="pdf-tag">PDF</span> PREPARAT ALUCYNK
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+        <li class="category-item">
+            <div class="category-header" onclick="toggle(this)">▶ OLEJE I PALIWA</div>
+            <ul class="submenu">
+                <li>
+                    <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAkuT3PIebERJqxqZaBgMAwAZSWfYQKqdbbfdGSMLqkUcM?e=DnGFwy" target="_blank" class="file-item">
+                        <div><span class="pdf-tag">PDF</span> OLEJ NAPĘDOWY (ON)</div>
+                        <div class="ufi-label">UFI: A830-6020-C002-Y1UR...</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQBQMj9aNquXSIfMOhN0Y_7OAZB_YYoHHQXzdY2X0xBiklI?e=fAbvr8" target="_blank" class="file-item">
+                        <div><span class="pdf-tag">PDF</span> BENZYNA BEZOŁOWIOWA</div>
+                        <div class="ufi-label">UFI: 1V30-Q0VS-G00H-KEX6</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCXywoAOeSTSpSZPPUdtE7LAZ-5RxEVkcpaSo2hIEZu8iU?e=J8gBtS" target="_blank" class="file-item">
+                        <div><span class="pdf-tag">PDF</span> BASE OIL SN 600</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQD8oJGhqQ94R6PC6KqHgPEHAQjeCbn487QUoHsRIoHsl3c?e=hjlTHY" target="_blank" class="file-item">
+                        <div><span class="pdf-tag">PDF</span> SHELL OMALA S4 GX 460</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
 
-            <li class="category-item">
-                <div class="category-header" onclick="toggle(this)">
-                    <span class="arrow">▶</span> MASA BITUMICZNA
-                </div>
-                <ul class="submenu">
-                    <li>
-                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAqRCteLwJcT7e07skjxt0uAWG67e6Kz54EHQE3SAkzB_w?e=KuyCJ6" 
-                           target="_blank" class="file-item">
-                            <div class="file-info"><span class="pdf-tag">PDF</span> MASA BITUMICZNA</div>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+        <li class="category-item">
+            <div class="category-header" onclick="toggle(this)">▶ SPREJE I PREPARATY</div>
+            <ul class="submenu">
+                <li>
+                    <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCHUZwDgf9UTLL98DnUwOscAeOWLr7ndglaoAwF9Z2k_Bs?e=YLW4hR" target="_blank" class="file-item">
+                        <div><span class="pdf-tag">PDF</span> CLEANER PU - Czyścik</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQA9wrnLW9U7TK76CIoaK9uYAUjbpwuMCpBOX2HFLZX7lS0?e=Xbut0I" target="_blank" class="file-item">
+                        <div><span class="pdf-tag">PDF</span> PREPARAT ALUCYNK</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
 
-            <li class="category-item">
-                <div class="category-header" onclick="toggle(this)">
-                    <span class="arrow">▶</span> BETONY I ZAPRAWY
-                </div>
-                <ul class="submenu">
-                    <li>
-                        <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCQlMDPob9YQbns2TWNeEpFAZHvqWKDjvbKFQbNC5Q5Ppo?e=slAfGh" 
-                           target="_blank" class="file-item">
-                            <div class="file-info">
-                                <span class="pdf-tag">PDF</span> MIESZANKA BETONOWA / CEMENTOWA
-                            </div>
-                            <div class="ufi-text">UFI: EJS2-40Q2-600G-MD7W</div>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
+        <li class="category-item">
+            <div class="category-header" onclick="toggle(this)">▶ MATERIAŁY BUDOWLANE</div>
+            <ul class="submenu">
+                <li>
+                    <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCQlMDPob9YQbns2TWNeEpFAZHvqWKDjvbKFQbNC5Q5Ppo?e=slAfGh" target="_blank" class="file-item">
+                        <div><span class="pdf-tag">PDF</span> MIESZANKA BETONOWA</div>
+                        <div class="ufi-label">UFI: EJS2-40Q2-600G-MD7W</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAqRCteLwJcT7e07skjxt0uAWG67e6Kz54EHQE3SAkzB_w?e=KuyCJ6" target="_blank" class="file-item">
+                        <div><span class="pdf-tag">PDF</span> MASA BITUMICZNA</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
 
-        <div class="footer">
-            System Kart Charakterystyki Enprom 2026
-        </div>
-    </div>
+    <div class="footer">Enprom 2026 - System Kart Charakterystyki</div>
+</div>
 
-    <script>
-        function toggle(el) {
-            el.classList.toggle('active');
-        }
+<script>
+    function toggle(el) {
+        el.classList.toggle('active');
+    }
 
-        document.getElementById('search').addEventListener('input', function(e) {
-            let filter = e.target.value.toLowerCase();
-            let categories = document.querySelectorAll('.category-item');
+    document.getElementById('search').addEventListener('input', function(e) {
+        let filter = e.target.value.toLowerCase();
+        let categories = document.querySelectorAll('.category-item');
 
-            categories.forEach(cat => {
-                let items = cat.querySelectorAll('.file-item');
-                let hasVisibleFiles = false;
+        categories.forEach(cat => {
+            let items = cat.querySelectorAll('.file-item');
+            let hasVisible = false;
 
-                items.forEach(item => {
-                    if (item.textContent.toLowerCase().includes(filter)) {
-                        item.classList.remove('hidden');
-                        hasVisibleFiles = true;
-                    } else {
-                        item.classList.add('hidden');
-                    }
-                });
-
-                if (filter.length > 0) {
-                    if (hasVisibleFiles) {
-                        cat.classList.remove('hidden');
-                        cat.querySelector('.category-header').classList.add('active');
-                    } else {
-                        cat.classList.add('hidden');
-                    }
+            items.forEach(item => {
+                if (item.textContent.toLowerCase().includes(filter)) {
+                    item.classList.remove('hidden');
+                    hasVisible = true;
                 } else {
-                    cat.classList.remove('hidden');
-                    cat.querySelector('.category-header').classList.remove('active');
+                    item.classList.add('hidden');
                 }
             });
+
+            if (filter.length > 0) {
+                if (hasVisible) {
+                    cat.classList.remove('hidden');
+                    cat.querySelector('.category-header').classList.add('active');
+                } else {
+                    cat.classList.add('hidden');
+                }
+            } else {
+                cat.classList.remove('hidden');
+                cat.querySelector('.category-header').classList.remove('active');
+            }
         });
-    </script>
+    });
+</script>
+
 </body>
 </html>
