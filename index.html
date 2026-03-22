@@ -3,147 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karty Charakterystyki 2026</title>
+    <title>Karty Charakterystyki 2026 - ENPROM</title>
     <style>
         :root {
             --primary-color: #0078d4;
             --text-color: #323130;
             --pdf-red: #d13438;
             --ufi-orange: #ff8c00; 
+            --download-blue: #005a9e;
         }
 
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #f0f2f5;
-            display: flex;
-            justify-content: center;
-            margin: 0;
-            padding: 15px;
-        }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; margin: 0; padding: 15px; }
+        .app-container { width: 100%; max-width: 400px; background: white; padding: 15px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .emergency-btn { background-color: var(--pdf-red); color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 20px; margin-bottom: 10px; }
+        
+        .download-all-btn { background-color: var(--download-blue); color: white; border: none; width: 100%; padding: 12px; border-radius: 8px; font-weight: 600; font-size: 14px; margin-bottom: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
 
-        .app-container {
-            width: 100%;
-            max-width: 400px;
-            background: white;
-            padding: 15px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
+        .search-box { width: 100%; box-sizing: border-box; padding: 12px; margin-bottom: 20px; border: 2px solid #eee; border-radius: 8px; font-size: 14px; outline: none; }
+        .tree-container { list-style: none; padding: 0; margin: 0; }
+        .category-item { margin-bottom: 8px; }
+        .category-header { display: flex; justify-content: space-between; padding: 12px 15px; cursor: pointer; font-weight: 700; background: #f9f9f9; border-radius: 6px; user-select: none; }
+        .arrow { transition: transform 0.3s ease; color: #666; }
+        .active .arrow { transform: rotate(180deg); }
+        .submenu { display: none; list-style: none; padding-left: 10px; margin-top: 5px; border-left: 2px solid #eee; }
+        .active + .submenu { display: block; }
 
-        .emergency-btn {
-            background-color: var(--pdf-red);
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 15px;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 20px;
-            margin-bottom: 20px;
-        }
-
-        .search-box {
-            width: 100%;
-            box-sizing: border-box;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 2px solid #eee;
-            border-radius: 8px;
-            font-size: 14px;
-            outline: none;
-        }
-
-        .tree-container {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .category-item {
-            margin-bottom: 8px;
-        }
-
-        .category-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 15px;
-            cursor: pointer;
-            font-weight: 700;
-            background: #f9f9f9;
-            border-radius: 6px;
-            user-select: none;
-            transition: background 0.2s;
-        }
-
-        .category-header:hover {
-            background: #f0f0f0;
-        }
-
-        /* Nowa, dynamiczna strzałka */
-        .arrow {
-            font-size: 12px;
-            transition: transform 0.3s ease;
-            color: #666;
-            display: inline-block;
-        }
-
-        /* Obrót strzałki o 180 stopni po rozwinięciu */
-        .active .arrow {
-            transform: rotate(180deg);
-        }
-
-        .submenu {
-            display: none;
-            list-style: none;
-            padding-left: 10px;
-            margin-top: 5px;
-            border-left: 2px solid #eee;
-        }
-
-        .active + .submenu {
-            display: block;
-        }
-
-        .file-item {
-            padding: 12px 10px;
-            display: flex;
-            flex-direction: column;
-            text-decoration: none;
-            color: var(--text-color);
-            border-bottom: 1px solid #f5f5f5;
-        }
-
-        .pdf-tag {
-            font-size: 9px;
-            background: var(--pdf-red);
-            color: white;
-            padding: 2px 4px;
-            border-radius: 3px;
-            margin-right: 8px;
-            font-weight: bold;
-        }
-
-        .ufi-label {
-            font-size: 11px;
-            color: var(--ufi-orange);
-            margin-top: 5px;
-            font-weight: 600;
-            font-family: monospace;
-            line-height: 1.4;
-        }
-
+        .file-item { padding: 12px 10px; display: flex; flex-direction: column; text-decoration: none; color: var(--text-color); border-bottom: 1px solid #f5f5f5; }
+        .pdf-tag { font-size: 9px; background: var(--pdf-red); color: white; padding: 2px 4px; border-radius: 3px; margin-right: 8px; font-weight: bold; }
+        .ufi-label { font-size: 11px; color: var(--ufi-orange); margin-top: 5px; font-weight: 600; font-family: monospace; }
+        .cas-label { font-size: 10px; color: #666; margin-top: 2px; }
         .hidden { display: none !important; }
-
-        .footer {
-            margin-top: 20px;
-            text-align: center;
-            font-size: 11px;
-            color: #999;
-            padding-top: 10px;
-        }
+        .footer { margin-top: 20px; text-align: center; font-size: 11px; color: #999; }
     </style>
 </head>
 <body>
@@ -151,106 +41,74 @@
 <div class="app-container">
     <a href="tel:112" class="emergency-btn">📞 POŁĄCZ Z 112</a>
 
-    <input type="text" id="search" class="search-box" placeholder="Szukaj produktu lub kodu UFI...">
+    <button id="downloadBtn" class="download-all-btn">📂 POBIERZ WSZYSTKIE KARTY (PDF)</button>
+
+    <input type="text" id="search" class="search-box" placeholder="Szukaj nazwy lub kodu UFI...">
 
     <ul class="tree-container">
         <li class="category-item">
-            <div class="category-header" onclick="toggle(this)">
-                <span>GAZY</span>
-                <span class="arrow">▼</span>
-            </div>
+            <div class="category-header" onclick="toggle(this)"><span>GAZY</span><span class="arrow">▼</span></div>
             <ul class="submenu">
-                <li>
-                    <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQC91rQWcaCwRabOn3tiQ4prAfzW9zAby4K7ehxXUI3aq3M?e=QwlfJB" target="_blank" class="file-item">
-                        <div><span class="pdf-tag">PDF</span> ACETYLEN</div>
-                        <div style="font-size:10px; color:#666;">Alarm: 112, 998, 999 | CAS: 74-86-2</div>
-                    </a>
-                </li>
+                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQC91rQWcaCwRabOn3tiQ4prAfzW9zAby4K7ehxXUI3aq3M?download=1" class="file-item">
+                    <div><span class="pdf-tag">PDF</span> ACETYLEN</div>
+                    <div class="cas-label">Alarm: 112, 998, 999 | CAS: 74-86-2</div>
+                </a></li>
             </ul>
         </li>
 
         <li class="category-item">
-            <div class="category-header" onclick="toggle(this)">
-                <span>OLEJE I PALIWA</span>
-                <span class="arrow">▼</span>
-            </div>
+            <div class="category-header" onclick="toggle(this)"><span>OLEJE I PALIWA</span><span class="arrow">▼</span></div>
             <ul class="submenu">
-                <li>
-                    <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAkuT3PIebERJqxqZaBgMAwAZSWfYQKqdbbfdGSMLqkUcM?e=DnGFwy" target="_blank" class="file-item">
-                        <div><span class="pdf-tag">PDF</span> OLEJ NAPĘDOWY (ON)</div>
-                        <div class="ufi-label">UFI: A830-6020-C002-Y1UR</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQBQMj9aNquXSIfMOhN0Y_7OAZB_YYoHHQXzdY2X0xBiklI?e=fAbvr8" target="_blank" class="file-item">
-                        <div><span class="pdf-tag">PDF</span> BENZYNA BEZOŁOWIOWA 95/98</div>
-                        <div class="ufi-label">UFI: 1V30-Q0VS-G00H-KEX6</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCXywoAOeSTSpSZPPUdtE7LAZ-5RxEVkcpaSo2hIEZu8iU?e=J8gBtS" target="_blank" class="file-item">
-                        <div><span class="pdf-tag">PDF</span> BASE OIL SN 600</div>
-                    </a>
-                </li>
+                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAkuT3PIebERJqxqZaBgMAwAZSWfYQKqdbbfdGSMLqkUcM?download=1" class="file-item">
+                    <div><span class="pdf-tag">PDF</span> OLEJ NAPĘDOWY (ON)</div>
+                    <div class="ufi-label">UFI: A830-6020-C002-Y1UR</div>
+                </a></li>
+                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQBQMj9aNquXSIfMOhN0Y_7OAZB_YYoHHQXzdY2X0xBiklI?download=1" class="file-item">
+                    <div><span class="pdf-tag">PDF</span> BENZYNA BEZOŁOWIOWA 95/98</div>
+                    <div class="ufi-label">UFI: 1V30-Q0VS-G00H-KEX6</div>
+                </a></li>
+                <li><a href="LINK_DO_PLIKU_BASE_OIL" class="file-item">
+                    <div><span class="pdf-tag">PDF</span> BASE OIL SN 600</div>
+                </a></li>
             </ul>
         </li>
 
         <li class="category-item">
-            <div class="category-header" onclick="toggle(this)">
-                <span>SPREJE I PREPARATY</span>
-                <span class="arrow">▼</span>
-            </div>
+            <div class="category-header" onclick="toggle(this)"><span>SPREJE I PREPARATY</span><span class="arrow">▼</span></div>
             <ul class="submenu">
-                <li>
-                    <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAJcSX0lZicRZPDQ6IJPGK2AYcZ9jOSG-tNuMcyLlu5PMg?e=1d33Me" target="_blank" class="file-item">
-                        <div><span class="pdf-tag">PDF</span> ŚRODEK ANTYADHEZYJNY</div>
-                        <div class="ufi-label">UFI: 2KXU-J22J-300Q-56XU</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCHUZwDgf9UTLL98DnUwOscAeOWLr7ndglaoAwF9Z2k_Bs?e=YLW4hR" target="_blank" class="file-item">
-                        <div><span class="pdf-tag">PDF</span> CLEANER PU - Czyścik</div>
-                        <div class="ufi-label">UFI: N700-U0K4-G004-9721</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQBYxnGEwHNIRoTIF81zxjhiAfMhdYaz65oHML3N2YDs_r8?e=OrtbTK" target="_blank" class="file-item">
-                        <div><span class="pdf-tag">PDF</span> DENATURAT</div>
-                        <div class="ufi-label">UFI: W8N0-D0NC-W00N-XFFF</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQA9wrnLW9U7TK76CIoaK9uYAUjbpwuMCpBOX2HFLZX7lS0?e=Xbut0I" target="_blank" class="file-item">
-                        <div><span class="pdf-tag">PDF</span> PREPARAT ALUCYNK</div>
-                    </a>
-                </li>
+                <li><a href="LINK_DO_PLIKU_ANTYADHEZYJNY" class="file-item">
+                    <div><span class="pdf-tag">PDF</span> ŚRODEK ANTYADHEZYJNY</div>
+                    <div class="ufi-label">UFI: 2KXU-J22J-300Q-56XU</div>
+                </a></li>
+                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCHUZwDgf9UTLL98DnUwOscAeOWLr7ndglaoAwF9Z2k_Bs?download=1" class="file-item">
+                    <div><span class="pdf-tag">PDF</span> CLEANER PU - Czyścik</div>
+                    <div class="ufi-label">UFI: N700-U0K4-G004-9721</div>
+                </a></li>
+                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQBYxnGEwHNIRoTIF81zxjhiAfMhdYaz65oHML3N2YDs_r8?download=1" class="file-item">
+                    <div><span class="pdf-tag">PDF</span> DENATURAT</div>
+                    <div class="ufi-label">UFI: W8N0-D0NC-W00N-XFFF</div>
+                </a></li>
+                <li><a href="LINK_DO_PLIKU_ALUCYNK" class="file-item">
+                    <div><span class="pdf-tag">PDF</span> PREPARAT ALUCYNK</div>
+                </a></li>
             </ul>
         </li>
 
         <li class="category-item">
-            <div class="category-header" onclick="toggle(this)">
-                <span>MATERIAŁY BUDOWLANE</span>
-                <span class="arrow">▼</span>
-            </div>
+            <div class="category-header" onclick="toggle(this)"><span>MATERIAŁY BUDOWLANE</span><span class="arrow">▼</span></div>
             <ul class="submenu">
-                <li>
-                    <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQD65W0Sk5h-S7iPYGfYw2BeAV06HAMOirpss6OBPCvJM6E?e=huYOod" target="_blank" class="file-item">
-                        <div><span class="pdf-tag">PDF</span> MIESZANKA Betonowa (Lafarge)</div>
-                        <div class="ufi-label">UFI: R800-F0QH-F008-TYR4</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCfO05jR_NvQZOZqr349pw5AZoCYNOqEh79enSv2fig69I?e=GclKxq" target="_blank" class="file-item">
-                        <div><span class="pdf-tag">PDF</span> StoPox GH 530 Komp. A</div>
-                        <div class="ufi-label">UFI: Y7C2-20F4-300Y-A6TH</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQC8P-xBa2rBQ5FN6mkEMj79AWNoRjjTFaLvMEPj9Vquwck?e=Wdy2r1" target="_blank" class="file-item">
-                        <div><span class="pdf-tag">PDF</span> DROHART - Spoiwo Drogowe</div>
-                        <div class="ufi-label">UFI (Żory): E000-X0R4-W005-TJD9</div>
-                    </a>
-                </li>
+                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQD65W0Sk5h-S7iPYGfYw2BeAV06HAMOirpss6OBPCvJM6E?download=1" class="file-item">
+                    <div><span class="pdf-tag">PDF</span> MIESZANKA Betonowa (Lafarge)</div>
+                    <div class="ufi-label">UFI: R800-F0QH-F008-TYR4</div>
+                </a></li>
+                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCfO05jR_NvQZOZqr349pw5AZoCYNOqEh79enSv2fig69I?download=1" class="file-item">
+                    <div><span class="pdf-tag">PDF</span> StoPox GH 530 Komp. A</div>
+                    <div class="ufi-label">UFI: Y7C2-20F4-300Y-A6TH</div>
+                </a></li>
+                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQC8P-xBa2rBQ5FN6mkEMj79AWNoRjjTFaLvMEPj9Vquwck?download=1" class="file-item">
+                    <div><span class="pdf-tag">PDF</span> DROHART - Spoiwo Drogowe</div>
+                    <div class="ufi-label">UFI (Żory): E000-X0R4-W005-TJD9</div>
+                </a></li>
             </ul>
         </li>
     </ul>
@@ -259,40 +117,43 @@
 </div>
 
 <script>
-    function toggle(el) {
-        // Dodaje klasę 'active' do nagłówka, co obraca strzałkę w CSS
-        el.classList.toggle('active');
-    }
+    function toggle(el) { el.classList.toggle('active'); }
+
+    document.getElementById('downloadBtn').addEventListener('click', function() {
+        const links = document.querySelectorAll('.file-item');
+        if (confirm("Pobrać wszystkie " + links.length + " karty PDF na telefon?")) {
+            links.forEach((link, index) => {
+                if(!link.href.includes('LINK_DO_PLIKU')) {
+                    setTimeout(() => {
+                        const a = document.createElement('a');
+                        a.href = link.href;
+                        a.setAttribute('download', '');
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                    }, index * 1000);
+                }
+            });
+        }
+    });
 
     document.getElementById('search').addEventListener('input', function(e) {
         let filter = e.target.value.toLowerCase();
         let categories = document.querySelectorAll('.category-item');
-
         categories.forEach(cat => {
             let items = cat.querySelectorAll('.file-item');
             let header = cat.querySelector('.category-header');
             let hasVisible = false;
-
             items.forEach(item => {
                 if (item.textContent.toLowerCase().includes(filter)) {
                     item.classList.remove('hidden');
                     hasVisible = true;
-                } else {
-                    item.classList.add('hidden');
-                }
+                } else { item.classList.add('hidden'); }
             });
-
             if (filter.length > 0) {
-                if (hasVisible) {
-                    cat.classList.remove('hidden');
-                    header.classList.add('active');
-                } else {
-                    cat.classList.add('hidden');
-                }
-            } else {
-                cat.classList.remove('hidden');
-                header.classList.remove('active');
-            }
+                if (hasVisible) { cat.classList.remove('hidden'); header.classList.add('active'); }
+                else { cat.classList.add('hidden'); }
+            } else { cat.classList.remove('hidden'); header.classList.remove('active'); }
         });
     });
 </script>
