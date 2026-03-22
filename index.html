@@ -15,7 +15,7 @@
         body {
             font-family: 'Segoe UI', sans-serif;
             background-color: #f0f2f5;
-            display: flex
+            display: flex;
             justify-content: center;
             margin: 0;
             padding: 15px;
@@ -82,14 +82,15 @@
             background: #f0f0f0;
         }
 
-        /* Stylizacja strzałki */
+        /* Nowa, dynamiczna strzałka */
         .arrow {
             font-size: 12px;
             transition: transform 0.3s ease;
             color: #666;
+            display: inline-block;
         }
 
-        /* Obrót strzałki gdy kategoria jest aktywna */
+        /* Obrót strzałki o 180 stopni po rozwinięciu */
         .active .arrow {
             transform: rotate(180deg);
         }
@@ -150,7 +151,7 @@
 <div class="app-container">
     <a href="tel:112" class="emergency-btn">📞 POŁĄCZ Z 112</a>
 
-    <input type="text" id="search" class="search-box" placeholder="Szukaj nazwy lub kodu UFI...">
+    <input type="text" id="search" class="search-box" placeholder="Szukaj produktu lub kodu UFI...">
 
     <ul class="tree-container">
         <li class="category-item">
@@ -160,15 +161,9 @@
             </div>
             <ul class="submenu">
                 <li>
-                    <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQDxIAOJy1IqRYd1ajIgkvqnAaZEwUsrfPrRlduOIG_6ZcQ?e=aqHwXU" target="_blank" class="file-item">
-                        <div><span class="pdf-tag">PDF</span> ALPEN CAMPING GAS</div>
-                        <div class="ufi-label">UFI: J200-U029-700U-906X</div>
-                    </a>
-                </li>
-                <li>
                     <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQC91rQWcaCwRabOn3tiQ4prAfzW9zAby4K7ehxXUI3aq3M?e=QwlfJB" target="_blank" class="file-item">
                         <div><span class="pdf-tag">PDF</span> ACETYLEN</div>
-                        <div style="font-size:10px; color:#666;">CAS: 74-86-2</div>
+                        <div style="font-size:10px; color:#666;">Alarm: 112, 998, 999 | CAS: 74-86-2</div>
                     </a>
                 </li>
             </ul>
@@ -183,13 +178,18 @@
                 <li>
                     <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAkuT3PIebERJqxqZaBgMAwAZSWfYQKqdbbfdGSMLqkUcM?e=DnGFwy" target="_blank" class="file-item">
                         <div><span class="pdf-tag">PDF</span> OLEJ NAPĘDOWY (ON)</div>
-                        <div class="ufi-label">UFI: A830-6020-C002-Y1UR...</div>
+                        <div class="ufi-label">UFI: A830-6020-C002-Y1UR</div>
                     </a>
                 </li>
                 <li>
                     <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQBQMj9aNquXSIfMOhN0Y_7OAZB_YYoHHQXzdY2X0xBiklI?e=fAbvr8" target="_blank" class="file-item">
                         <div><span class="pdf-tag">PDF</span> BENZYNA BEZOŁOWIOWA 95/98</div>
                         <div class="ufi-label">UFI: 1V30-Q0VS-G00H-KEX6</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCXywoAOeSTSpSZPPUdtE7LAZ-5RxEVkcpaSo2hIEZu8iU?e=J8gBtS" target="_blank" class="file-item">
+                        <div><span class="pdf-tag">PDF</span> BASE OIL SN 600</div>
                     </a>
                 </li>
             </ul>
@@ -202,15 +202,26 @@
             </div>
             <ul class="submenu">
                 <li>
-                    <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQBYxnGEwHNIRoTIF81zxjhiAfMhdYaz65oHML3N2YDs_r8?e=OrtbTK" target="_blank" class="file-item">
-                        <div><span class="pdf-tag">PDF</span> DENATURAT</div>
-                        <div class="ufi-label">UFI: W8N0-D0NC-W00N-XFFF</div>
+                    <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAJcSX0lZicRZPDQ6IJPGK2AYcZ9jOSG-tNuMcyLlu5PMg?e=1d33Me" target="_blank" class="file-item">
+                        <div><span class="pdf-tag">PDF</span> ŚRODEK ANTYADHEZYJNY</div>
+                        <div class="ufi-label">UFI: 2KXU-J22J-300Q-56XU</div>
                     </a>
                 </li>
                 <li>
                     <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCHUZwDgf9UTLL98DnUwOscAeOWLr7ndglaoAwF9Z2k_Bs?e=YLW4hR" target="_blank" class="file-item">
                         <div><span class="pdf-tag">PDF</span> CLEANER PU - Czyścik</div>
                         <div class="ufi-label">UFI: N700-U0K4-G004-9721</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQBYxnGEwHNIRoTIF81zxjhiAfMhdYaz65oHML3N2YDs_r8?e=OrtbTK" target="_blank" class="file-item">
+                        <div><span class="pdf-tag">PDF</span> DENATURAT</div>
+                        <div class="ufi-label">UFI: W8N0-D0NC-W00N-XFFF</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQA9wrnLW9U7TK76CIoaK9uYAUjbpwuMCpBOX2HFLZX7lS0?e=Xbut0I" target="_blank" class="file-item">
+                        <div><span class="pdf-tag">PDF</span> PREPARAT ALUCYNK</div>
                     </a>
                 </li>
             </ul>
@@ -249,6 +260,7 @@
 
 <script>
     function toggle(el) {
+        // Dodaje klasę 'active' do nagłówka, co obraca strzałkę w CSS
         el.classList.toggle('active');
     }
 
