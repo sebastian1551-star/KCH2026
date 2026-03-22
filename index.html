@@ -3,160 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karty Charakterystyki 2026 - ENPROM</title>
+    <title>Baza 36 Kart Charakterystyki - ENPROM</title>
     <style>
-        :root {
-            --primary-color: #0078d4;
-            --text-color: #323130;
-            --pdf-red: #d13438;
-            --ufi-orange: #ff8c00; 
-            --download-blue: #005a9e;
-        }
-
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; margin: 0; padding: 15px; }
-        .app-container { width: 100%; max-width: 400px; background: white; padding: 15px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .emergency-btn { background-color: var(--pdf-red); color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 20px; margin-bottom: 10px; }
-        
-        .download-all-btn { background-color: var(--download-blue); color: white; border: none; width: 100%; padding: 12px; border-radius: 8px; font-weight: 600; font-size: 14px; margin-bottom: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
-
-        .search-box { width: 100%; box-sizing: border-box; padding: 12px; margin-bottom: 20px; border: 2px solid #eee; border-radius: 8px; font-size: 14px; outline: none; }
-        .tree-container { list-style: none; padding: 0; margin: 0; }
-        .category-item { margin-bottom: 8px; }
-        .category-header { display: flex; justify-content: space-between; padding: 12px 15px; cursor: pointer; font-weight: 700; background: #f9f9f9; border-radius: 6px; user-select: none; }
-        .arrow { transition: transform 0.3s ease; color: #666; }
+        :root { --primary: #0078d4; --danger: #d13438; --warning: #ff8c00; --bg: #f3f2f1; --text: #323130; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; padding: 10px; display: flex; justify-content: center; }
+        .app-container { width: 100%; max-width: 500px; background: white; padding: 15px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+        .emergency-btn { background: var(--danger); color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; padding: 16px; border-radius: 8px; font-weight: bold; font-size: 18px; margin-bottom: 12px; border: 2px solid #a4262c; }
+        .download-all-btn { background: #005a9e; color: white; border: none; width: 100%; padding: 14px; border-radius: 8px; font-weight: 600; cursor: pointer; margin-bottom: 15px; font-size: 14px; }
+        .search-box { width: 100%; box-sizing: border-box; padding: 12px; margin-bottom: 15px; border: 2px solid #deecf9; border-radius: 8px; font-size: 15px; }
+        .category-header { display: flex; justify-content: space-between; padding: 12px; cursor: pointer; font-weight: bold; background: #faf9f8; border-radius: 6px; margin-top: 5px; border: 1px solid #edebe9; }
+        .arrow { transition: transform 0.3s; }
         .active .arrow { transform: rotate(180deg); }
-        .submenu { display: none; list-style: none; padding-left: 10px; margin-top: 5px; border-left: 2px solid #eee; }
+        .submenu { display: none; list-style: none; padding: 0; margin: 0; }
         .active + .submenu { display: block; }
-
-        .file-item { padding: 12px 10px; display: flex; flex-direction: column; text-decoration: none; color: var(--text-color); border-bottom: 1px solid #f5f5f5; }
-        .pdf-tag { font-size: 9px; background: var(--pdf-red); color: white; padding: 2px 4px; border-radius: 3px; margin-right: 8px; font-weight: bold; }
-        .ufi-label { font-size: 11px; color: var(--ufi-orange); margin-top: 5px; font-weight: 600; font-family: monospace; }
-        .cas-label { font-size: 10px; color: #666; margin-top: 2px; }
+        .file-item { padding: 10px; display: flex; flex-direction: column; text-decoration: none; color: var(--text); border-bottom: 1px solid #f3f2f1; font-size: 13px; }
+        .pdf-tag { font-size: 9px; background: var(--danger); color: white; padding: 2px 4px; border-radius: 3px; font-weight: bold; width: fit-content; margin-bottom: 3px; }
+        .ufi { font-size: 10px; color: var(--warning); font-weight: bold; }
         .hidden { display: none !important; }
-        .footer { margin-top: 20px; text-align: center; font-size: 11px; color: #999; }
+        .counter { text-align: center; font-size: 12px; color: #666; margin-bottom: 10px; font-weight: bold; }
     </style>
 </head>
 <body>
 
 <div class="app-container">
-    <a href="tel:112" class="emergency-btn">📞 POŁĄCZ Z 112</a>
+    <a href="tel:112" class="emergency-btn">🆘 RATOWNICTWO: 112</a>
+    <button id="downloadBtn" class="download-all-btn">📥 POBIERZ WSZYSTKIE (36 PDF)</button>
+    <div class="counter">ZAŁADOWANO: 36 KART CHARAKTERYSTYKI</div>
+    <input type="text" id="search" class="search-box" placeholder="Szukaj produktu...">
 
-    <button id="downloadBtn" class="download-all-btn">📂 POBIERZ WSZYSTKIE KARTY (PDF)</button>
-
-    <input type="text" id="search" class="search-box" placeholder="Szukaj nazwy lub kodu UFI...">
-
-    <ul class="tree-container">
-        <li class="category-item">
-            <div class="category-header" onclick="toggle(this)"><span>GAZY</span><span class="arrow">▼</span></div>
+    <div class="tree-container">
+        
+        <div class="category-item">
+            <div class="category-header" onclick="toggle(this)"><span>GAZY (4)</span><span class="arrow">▼</span></div>
             <ul class="submenu">
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQC91rQWcaCwRabOn3tiQ4prAfzW9zAby4K7ehxXUI3aq3M?download=1" class="file-item">
-                    <div><span class="pdf-tag">PDF</span> ACETYLEN</div>
-                    <div class="cas-label">Alarm: 112, 998, 999 | CAS: 74-86-2</div>
-                </a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 1. Acetylen Air Products</a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 2. Propan-Butan (kch-propan-butan-rev)</a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 3. Alpen Camping Gas (Energy)</a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 4. Tlen sprężony techniczny (STP-001)</a></li>
             </ul>
-        </li>
+        </div>
 
-        <li class="category-item">
-            <div class="category-header" onclick="toggle(this)"><span>OLEJE I PALIWA</span><span class="arrow">▼</span></div>
+        <div class="category-item">
+            <div class="category-header" onclick="toggle(this)"><span>PALIWA I SMARY (7)</span><span class="arrow">▼</span></div>
             <ul class="submenu">
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAkuT3PIebERJqxqZaBgMAwAZSWfYQKqdbbfdGSMLqkUcM?download=1" class="file-item">
-                    <div><span class="pdf-tag">PDF</span> OLEJ NAPĘDOWY (ON)</div>
-                    <div class="ufi-label">UFI: A830-6020-C002-Y1UR</div>
-                </a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQBQMj9aNquXSIfMOhN0Y_7OAZB_YYoHHQXzdY2X0xBiklI?download=1" class="file-item">
-                    <div><span class="pdf-tag">PDF</span> BENZYNA BEZOŁOWIOWA 95/98</div>
-                    <div class="ufi-label">UFI: 1V30-Q0VS-G00H-KEX6</div>
-                </a></li>
-                <li><a href="LINK_DO_PLIKU_BASE_OIL" class="file-item">
-                    <div><span class="pdf-tag">PDF</span> BASE OIL SN 600</div>
-                </a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 5. Olej napędowy handlowy (ON)</a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 6. Benzyny handlowe 95/98</a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 7. Base Oil SN 600</a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 8. Shell Omala GX 460</a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 9. WD-40 (Aerozol)</a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 10. Denaturat D7</a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 11. Malsolwent 1</a></li>
             </ul>
-        </li>
+        </div>
 
-        <li class="category-item">
-            <div class="category-header" onclick="toggle(this)"><span>SPREJE I PREPARATY</span><span class="arrow">▼</span></div>
+        <div class="category-item">
+            <div class="category-header" onclick="toggle(this)"><span>PIANY I CHEMIA (9)</span><span class="arrow">▼</span></div>
             <ul class="submenu">
-                <li><a href="LINK_DO_PLIKU_ANTYADHEZYJNY" class="file-item">
-                    <div><span class="pdf-tag">PDF</span> ŚRODEK ANTYADHEZYJNY</div>
-                    <div class="ufi-label">UFI: 2KXU-J22J-300Q-56XU</div>
-                </a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCHUZwDgf9UTLL98DnUwOscAeOWLr7ndglaoAwF9Z2k_Bs?download=1" class="file-item">
-                    <div><span class="pdf-tag">PDF</span> CLEANER PU - Czyścik</div>
-                    <div class="ufi-label">UFI: N700-U0K4-G004-9721</div>
-                </a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQBYxnGEwHNIRoTIF81zxjhiAfMhdYaz65oHML3N2YDs_r8?download=1" class="file-item">
-                    <div><span class="pdf-tag">PDF</span> DENATURAT</div>
-                    <div class="ufi-label">UFI: W8N0-D0NC-W00N-XFFF</div>
-                </a></li>
-                <li><a href="LINK_DO_PLIKU_ALUCYNK" class="file-item">
-                    <div><span class="pdf-tag">PDF</span> PREPARAT ALUCYNK</div>
-                </a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 12. Piana montażowa (UFI 1QGX...)</a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 13. Piana uniwersalna STALCO</a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 14. Sika-Boom 583</a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 15. Cleaner PU (Czyścik)</a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 16. Preparat Alucynk 500ml</a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 17. Środek Antyadhezyjny (KCH)</a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 18. Roxtec Fire Sealant</a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 19. PU-Środek do codziennej pielęgnacji</a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 20. Masa bitumiczna Dysperbit</a></li>
             </ul>
-        </li>
+        </div>
 
-        <li class="category-item">
-            <div class="category-header" onclick="toggle(this)"><span>MATERIAŁY BUDOWLANE</span><span class="arrow">▼</span></div>
+        <div class="category-item">
+            <div class="category-header" onclick="toggle(this)"><span>BUDOWLANE I KOTWY (16)</span><span class="arrow">▼</span></div>
             <ul class="submenu">
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQD65W0Sk5h-S7iPYGfYw2BeAV06HAMOirpss6OBPCvJM6E?download=1" class="file-item">
-                    <div><span class="pdf-tag">PDF</span> MIESZANKA Betonowa (Lafarge)</div>
-                    <div class="ufi-label">UFI: R800-F0QH-F008-TYR4</div>
-                </a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCfO05jR_NvQZOZqr349pw5AZoCYNOqEh79enSv2fig69I?download=1" class="file-item">
-                    <div><span class="pdf-tag">PDF</span> StoPox GH 530 Komp. A</div>
-                    <div class="ufi-label">UFI: Y7C2-20F4-300Y-A6TH</div>
-                </a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQC8P-xBa2rBQ5FN6mkEMj79AWNoRjjTFaLvMEPj9Vquwck?download=1" class="file-item">
-                    <div><span class="pdf-tag">PDF</span> DROHART - Spoiwo Drogowe</div>
-                    <div class="ufi-label">UFI (Żory): E000-X0R4-W005-TJD9</div>
-                </a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 21. Mieszanka betonowa 09052024</a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 22. Drohart - spoiwo drogowe</a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 23. M 15 Zaprawa do cienkich spoin</a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 24. StoPox GH 530 - Komp. A</a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 25. Utwardzacz GH 530 - Komp. B</a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 26. StoPox BB OS - Komp. A</a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 27. StoPox BB OS - Komp. B</a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 28. Hilti HIT-HY-200-R</a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 29. Hilti HIT-HY-270-PL</a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 30. SDS Weber PG212</a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 31. SDS Weber REP 756</a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 32. Weber.tec Superflex D 24 Komp. A</a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 33. SDS Weber.tec 901</a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 34. SDS Weberep KB Duo</a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 35. Karta QB D46014044</a></li>
+                <li><a href="URL&download=1" class="file-item"><span class="pdf-tag">PDF</span> 36. Mieszanka Betonowa (Lafarge)</a></li>
             </ul>
-        </li>
-    </ul>
+        </div>
 
-    <div class="footer">Enprom 2026 - System Kart Charakterystyki</div>
+    </div>
+    <div class="footer">ENPROM 2026 | Baza 36 Kart Charakterystyki</div>
 </div>
 
 <script>
     function toggle(el) { el.classList.toggle('active'); }
-
+    
     document.getElementById('downloadBtn').addEventListener('click', function() {
         const links = document.querySelectorAll('.file-item');
-        if (confirm("Pobrać wszystkie " + links.length + " karty PDF na telefon?")) {
+        if (confirm("Rozpocząć pobieranie wszystkich 36 kart?")) {
             links.forEach((link, index) => {
-                if(!link.href.includes('LINK_DO_PLIKU')) {
-                    setTimeout(() => {
-                        const a = document.createElement('a');
-                        a.href = link.href;
-                        a.setAttribute('download', '');
-                        document.body.appendChild(a);
-                        a.click();
-                        document.body.removeChild(a);
-                    }, index * 1000);
-                }
+                setTimeout(() => {
+                    const a = document.createElement('a');
+                    a.href = link.href;
+                    a.setAttribute('download', '');
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                }, index * 1000);
             });
         }
     });
 
     document.getElementById('search').addEventListener('input', function(e) {
         let filter = e.target.value.toLowerCase();
-        let categories = document.querySelectorAll('.category-item');
-        categories.forEach(cat => {
-            let items = cat.querySelectorAll('.file-item');
-            let header = cat.querySelector('.category-header');
-            let hasVisible = false;
-            items.forEach(item => {
-                if (item.textContent.toLowerCase().includes(filter)) {
-                    item.classList.remove('hidden');
-                    hasVisible = true;
-                } else { item.classList.add('hidden'); }
-            });
-            if (filter.length > 0) {
-                if (hasVisible) { cat.classList.remove('hidden'); header.classList.add('active'); }
-                else { cat.classList.add('hidden'); }
-            } else { cat.classList.remove('hidden'); header.classList.remove('active'); }
+        let items = document.querySelectorAll('.file-item');
+        items.forEach(item => {
+            item.classList.toggle('hidden', !item.textContent.toLowerCase().includes(filter));
         });
     });
 </script>
-
 </body>
 </html>
