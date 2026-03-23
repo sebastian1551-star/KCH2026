@@ -14,12 +14,11 @@
             --text: #323130;
         }
 
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; padding: 10px; display: flex; justify-content: center; }
-        .app-container { width: 100%; max-width: 550px; background: white; padding: 15px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; padding: 10px; display: flex; flex-direction: column; align-items: center; }
+        .app-container { width: 100%; max-width: 550px; background: white; padding: 15px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); box-sizing: border-box; }
         
-        /* Sekcja Ostatniej Aktualizacji */
-        .update-alert { background: #dff6dd; border: 1px solid var(--success); color: var(--success); padding: 12px; border-radius: 8px; margin-bottom: 15px; font-size: 13px; line-height: 1.4; }
-        .update-date { font-weight: bold; font-size: 15px; margin-bottom: 4px; display: block; }
+        .update-header { margin-bottom: 20px; font-family: sans-serif; display: flex; align-items: center; gap: 10px; width: 100%; max-width: 550px; }
+        .update-header input { padding: 5px; border: 1px solid #ccc; border-radius: 4px; cursor: pointer; }
 
         .emergency-btn { background: var(--danger); color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; padding: 16px; border-radius: 8px; font-weight: bold; font-size: 18px; margin-bottom: 12px; border: 2px solid #a4262c; }
         
@@ -42,25 +41,25 @@
         .product-name { font-weight: 600; font-size: 14px; }
         
         .ufi-box { font-size: 11px; color: var(--warning); margin-top: 4px; font-weight: 700; font-family: monospace; }
-        .ufi-box:empty { display: none; }
-
         .hidden { display: none !important; }
         .footer { text-align: center; font-size: 11px; color: #a19f9d; margin-top: 25px; padding: 10px; border-top: 1px solid #eee; }
     </style>
 </head>
 <body>
 
-<div style="margin-bottom: 20px; font-family: sans-serif; display: flex; align-items: center; gap: 10px;">
-    <span style="font-weight: bold;">Ostatnia aktualizacja:</span>
-    <input type="date" value="2024-05-22" style="padding: 5px; border: 1px solid #ccc; border-radius: 4px; cursor: pointer;">
-</div>
-    <a href="tel:112" class="emergency-btn">🆘 RATOWNICTWO: 112</a>
+    <div class="update-header">
+        <span style="font-weight: bold;">Ostatnia aktualizacja:</span>
+        <input type="date" value="2024-05-22">
+    </div>
 
-    <button id="downloadBtn" class="download-all-btn">📥 POBIERZ WSZYSTKIE 36 KART (OFFLINE)</button>
+    <div class="app-container">
+        <a href="tel:112" class="emergency-btn">🆘 RATOWNICTWO: 112</a>
 
-    <input type="text" id="search" class="search-box" placeholder="Szukaj produktu lub UFI...">
+        <button id="downloadBtn" class="download-all-btn">📥 POBIERZ WSZYSTKIE 36 KART (OFFLINE)</button>
 
-    <div class="tree-container">
+        <input type="text" id="search" class="search-box" placeholder="Szukaj produktu lub UFI...">
+
+        <div class="tree-container">
         
         <div class="category-item">
             <div class="category-header" onclick="toggle(this)"><span>GAZY TECHNICZNE (4)</span><span class="arrow">▼</span></div>
@@ -173,7 +172,7 @@
                     const a = document.createElement('a');
                     a.href = link.href + "&download=1"; // Wymuszenie pobierania z SharePoint
                     a.setAttribute('download', '');
-                    document.body.appendChild(a);
+                    document.body.endChild(a);
                     a.click();
                     document.body.removeChild(a);
                 }, index * 1200);
