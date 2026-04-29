@@ -18,22 +18,21 @@
         .app-container { width: 100%; max-width: 550px; background: white; padding: 15px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); box-sizing: border-box; }
         
         .update-header { margin-bottom: 20px; font-family: sans-serif; display: flex; align-items: center; gap: 10px; width: 100%; max-width: 550px; }
-        .update-header input { padding: 5px; border: 1px solid #ccc; border-radius: 4px; cursor: pointer; }
 
         .emergency-btn { background: var(--danger); color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; padding: 16px; border-radius: 8px; font-weight: bold; font-size: 18px; margin-bottom: 12px; border: 2px solid #a4262c; }
         
-        .download-all-btn { background: #005a9e; color: white; border: none; width: 100%; padding: 14px; border-radius: 8px; font-weight: 600; cursor: pointer; margin-bottom: 15px; font-size: 14px; }
+        .download-all-btn { background: #005a9e; color: white; border: none; width: 100%; padding: 14px; border-radius: 8px; font-weight: 600; cursor: pointer; margin-bottom: 15px; font-size: 14px; display: block; text-align: center; width: 100%; box-sizing: border-box; }
 
         .search-box { width: 100%; box-sizing: border-box; padding: 15px; margin-bottom: 15px; border: 2px solid var(--primary); border-radius: 8px; font-size: 16px; outline: none; }
         
         .category-item { margin-bottom: 8px; }
         .category-header { display: flex; justify-content: space-between; padding: 12px; cursor: pointer; font-weight: bold; background: #faf9f8; border-radius: 6px; border: 1px solid #edebe9; }
         .arrow { transition: transform 0.3s; color: #605e5c; }
-        .active { background: #f3f2f1; }
-        .active .arrow { transform: rotate(180deg); }
+        .category-header.active { background: #f3f2f1; }
+        .category-header.active .arrow { transform: rotate(180deg); }
         
         .submenu { display: none; list-style: none; padding: 0; margin: 0; border-left: 2px solid var(--primary); margin-left: 5px; }
-        .active + .submenu { display: block; }
+        .category-header.active + .submenu { display: block; }
 
         .file-item { padding: 12px; display: flex; flex-direction: column; text-decoration: none; color: var(--text); border-bottom: 1px solid #f3f2f1; transition: background 0.2s; }
         .file-item:hover { background: #f9f9f9; }
@@ -41,7 +40,7 @@
         .pdf-tag { font-size: 9px; background: var(--danger); color: white; padding: 2px 4px; border-radius: 3px; font-weight: bold; width: fit-content; margin-bottom: 3px; }
         .product-name { font-weight: 600; font-size: 14px; }
         
-        .ufi-box { font-size: 11px; color: var(--warning); margin-top: 4px; font-weight: 700; font-family: monospace; }
+        .ufi-box { font-size: 11px; color: var(--warning); margin-top: 4px; font-weight: 700; font-family: monospace; word-break: break-all; }
         .hidden { display: none !important; }
         .footer { text-align: center; font-size: 11px; color: #a19f9d; margin-top: 25px; padding: 10px; border-top: 1px solid #eee; }
         
@@ -53,12 +52,12 @@
 
     <div class="update-info">
         <span class="update-label">Ostatnia aktualizacja bazy:</span>
-        <span class="update-value"><b>26.03.2026</b></span>
+        <span class="update-value">29.04.2026</span>
     </div>
 
     <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAzlBsl7YsPTK1fJR30FBtHAQvIJS-eDUnbjDdfnKPSoUg?e=ZIlr24" 
        target="_blank" 
-       style="display: flex; align-items: center; justify-content: center; width: 100%; max-width: 550px; height: 80px; background-color: #107c10; color: white; text-decoration: none; border-radius: 12px; font-weight: bold; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border: 1px solid #0d620d;">
+       style="display: flex; align-items: center; justify-content: center; width: 100%; max-width: 550px; height: 80px; background-color: #107c10; color: white; text-decoration: none; border-radius: 12px; font-weight: bold; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border: 1px solid #0d620d; text-align: center;">
         <span style="font-size: 24px; margin-right: 15px;">🌿</span>
         <span style="font-size: 16px;">ZAPOZNANIE Z KARTAMI CHARAKTERYSTYKI</span>
     </a>
@@ -66,83 +65,89 @@
     <div class="app-container">
         <a href="tel:112" class="emergency-btn">🆘 RATOWNICTWO: 112</a>
 
+        <button id="downloadBtn" class="download-all-btn">📥 POBIERZ WSZYSTKIE KARTY (OFFLINE)</button>
+
         <input type="text" id="search" class="search-box" placeholder="Szukaj produktu lub UFI...">
 
         <div class="tree-container">
         
-        <div class="category-item">
-            <div class="category-header" onclick="toggle(this)"><span>GAZY TECHNICZNE (4)</span><span class="arrow">▼</span></div>
-            <ul class="submenu">
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQC91rQWcaCwRabOn3tiQ4prAfzW9zAby4K7ehxXUI3aq3M?e=JL8jKc" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">1. Acetylen (Air Products)</span><div class="ufi-box"></div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQDgoBg2IdRmQ7PPR9428FJqAcYL0ApIZfEnRaYDGd1jnfg?e=NKK0YQ" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">2. Propan-Butan (LPG)</span><div class="ufi-box">UFI: G200-U0CW-500U-Q6WY (P30-50% / B50-70%); UFI: X500-C029-G00A-DJH1 (P50-70% / B30-50%); UFI: Y800-U0RP-S00T-1W33 (P35-55% / B45-65%); UFI: V200-UOCW-500W-QC4C (P70-90% / B10-30%)</div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQDxIAOJy1IqRYd1ajIgkvqnAaZEwUsrfPrRlduOIG_6ZcQ?e=8LqTas" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">3. Alpen Camping Gas</span><div class="ufi-box">UFI: 98EU-7E51-XC6H-MHFK</div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAEmk-8CTheRr3IXG-5NpNZAfgK400Hwov0OGemi5R0-74?e=PDgadS" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">4. Tlen sprężony techniczny</span><div class="ufi-box"></div></a></li>
-            </ul>
-        </div>
+            <div class="category-item">
+                <div class="category-header" onclick="toggle(this)"><span>GAZY TECHNICZNE (5)</span><span class="arrow">▼</span></div>
+                <ul class="submenu">
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQC91rQWcaCwRabOn3tiQ4prAfzW9zAby4K7ehxXUI3aq3M?e=JL8jKc" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">1. Acetylen (Air Products)</span></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQDgoBg2IdRmQ7PPR9428FJqAcYL0ApIZfEnRaYDGd1jnfg?e=NKK0YQ" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">2. Propan-Butan (LPG)</span><div class="ufi-box">UFI: G200-U0CW-500U-Q6WY; X500-C029-G00A-DJH1; Y800-U0RP-S00T-1W33; V200-UOCW-500W-QC4C</div></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQDxIAOJy1IqRYd1ajIgkvqnAaZEwUsrfPrRlduOIG_6ZcQ?e=8LqTas" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">3. Alpen Camping Gas</span><div class="ufi-box">UFI: 98EU-7E51-XC6H-MHFK</div></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAEmk-8CTheRr3IXG-5NpNZAfgK400Hwov0OGemi5R0-74?e=PDgadS" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">4. Tlen sprężony techniczny</span></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQDTrMA0q58WSJOqwNNJTNcLAaZzE4ncjPDS12Q9zzeFiQM?e=KePTH6" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">5. Gazy techniczne (Mieszaniny)</span></a></li>
+                </ul>
+            </div>
 
-        <div class="category-item">
-            <div class="category-header" onclick="toggle(this)"><span>PALIWA I SMARY (7)</span><span class="arrow">▼</span></div>
-            <ul class="submenu">
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAkuT3PIebERJqxqZaBgMAwAZSWfYQKqdbbfdGSMLqkUcM?e=QJCfR5" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">5. Olej napędowy handlowy (ON)</span><div class="ufi-box">Ekodiesel Ultra B: UFI: A830-6020-C002-Y1UR; Ekodiesel Ultra D,F: UFI: CC30-P0RD-N00J-MDET; Olej napędowy arktyczny klasy 2: UFI: JS30-706D-6001-X3C4; EFECTA DIESEL B: UFI: HF30-60ES-Y001-9R0V; EFECTA DIESEL D,F: UFI: 1H30-Q046-800J-X2KX; VERVA ON B: UFI: VM30-60TK-K001-ME60; VERVA ON D,F: UFI: 6Q30-Q0GY-V00H-8RS2; VERVA ON z Powerguard 6601: UFI: Q450-Q03A-800D-RXQS</div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQBQMj9aNquXSIfMOhN0Y_7OAZB_YYoHHQXzdY2X0xBiklI?e=HrZwQ1" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">6. Benzyny handlowe 95/98</span><div class="ufi-box">Benzyna bezołowiowa 95, Benzyna bezołowiowa 98, EuroSuper 95, Super Plus 98 UFI: 1V30-Q0VS-G00H-KEX6; EFECTA 95, VERVA 98 UFI: YY30-70K5-T000-8SH8</div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCXywoAOeSTSpSZPPUdtE7LAZ-5RxEVkcpaSo2hIEZu8iU?e=hemVEp" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">7. Base Oil SN 600</span><div class="ufi-box"></div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQD8oJGhqQ94R6PC6KqHgPEHAQjeCbn487QUoHsRIoHsl3c?e=mBgINg" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">8. Shell Omala GX 460</span><div class="ufi-box"></div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAW_y-cWDDEQqpGDF2-fGBsAYQz3m-whf_BaR60946lVy0?e=w4MCwj" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">9. WD-40 (Aerozol)</span><div class="ufi-box">UFI: HQ60-80EF-FOOK-92TP</div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQBYxnGEwHNIRoTIF81zxjhiAfMhdYaz65oHML3N2YDs_r8?e=ys94kG" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">10. Denaturat D7</span><div class="ufi-box">UFI: W8N0-D0NC-W00N-XFFF</div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQDdOlIGGpCkRbj73RlJk9xkAXRhTdG7cAe1-sf7LV1rWkc?e=tmkt0i" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">11. Malsolwent 1</span><div class="ufi-box">UFI: 0300-F0N9-P001-GF7N</div></a></li>
-            </ul>
-        </div>
+            <div class="category-item">
+                <div class="category-header" onclick="toggle(this)"><span>PALIWA I SMARY (8)</span><span class="arrow">▼</span></div>
+                <ul class="submenu">
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAkuT3PIebERJqxqZaBgMAwAZSWfYQKqdbbfdGSMLqkUcM?e=QJCfR5" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">6. Olej napędowy (ON) - Wszystkie rodzaje</span><div class="ufi-box">UFI: A830-6020-C002-Y1UR; CC30-P0RD-N00J-MDET; JS30-706D-6001-X3C4; HF30-60ES-Y001-9R0V</div></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQBQMj9aNquXSIfMOhN0Y_7OAZB_YYoHHQXzdY2X0xBiklI?e=HrZwQ1" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">7. Benzyny handlowe 95/98</span><div class="ufi-box">UFI: 1V30-Q0VS-G00H-KEX6; YY30-70K5-T000-8SH8</div></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCXywoAOeSTSpSZPPUdtE7LAZ-5RxEVkcpaSo2hIEZu8iU?e=hemVEp" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">8. Base Oil SN 600</span></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQD8oJGhqQ94R6PC6KqHgPEHAQjeCbn487QUoHsRIoHsl3c?e=mBgINg" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">9. Shell Omala GX 460</span></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAW_y-cWDDEQqpGDF2-fGBsAYQz3m-whf_BaR60946lVy0?e=w4MCwj" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">10. WD-40 (Aerozol)</span><div class="ufi-box">UFI: HQ60-80EF-FOOK-92TP</div></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQBYxnGEwHNIRoTIF81zxjhiAfMhdYaz65oHML3N2YDs_r8?e=ys94kG" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">11. Denaturat D7</span><div class="ufi-box">UFI: W8N0-D0NC-W00N-XFFF</div></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQDdOlIGGpCkRbj73RlJk9xkAXRhTdG7cAe1-sf7LV1rWkc?e=tmkt0i" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">12. Malsolwent 1</span><div class="ufi-box">UFI: 0300-F0N9-P001-GF7N</div></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQDSnXq9c9hKQJ_5S6FwQwDUAVg1YROF9DDuM-YxsT8VVHo?e=zneaow" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">13. Olej silnikowy Orlen</span></a></li>
+                </ul>
+            </div>
 
-        <div class="category-item">
-            <div class="category-header" onclick="toggle(this)"><span>PIANY, SPREJE I CHEMIA (11)</span><span class="arrow">▼</span></div>
-            <ul class="submenu">
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCizG8QKR8yT5pvwUQ3IMrRAV2GnjzM33tKPo-r9rFiPEA?e=5WKECl" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">12. Piana montażowa (Soudal/Tytan)</span><div class="ufi-box">UFI: 1QGX-98Y6-U00R-M23S</div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQByKYE3obKjQqdb4gMo-YlOAZfMcSzHJ_w_lqKneLTaim4?e=f5CVCI" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">13. Piana uniwersalna STALCO</span><div class="ufi-box"></div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCDvfv5Lnn4SpLeSWd5Ru8DAXmewke8x0yT0paduTBc8cE?e=UuTrdC" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">14. Sika-Boom 583</span><div class="ufi-box"></div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCHUZwDgf9UTLL98DnUwOscAeOWLr7ndglaoAwF9Z2k_Bs?e=QcdZxd" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">15. Cleaner PU (Czyścik)</span><div class="ufi-box">UFI: N700-U0K4-G004-9721</div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQA9wrnLW9U7TK76CIoaK9uYAUjbpwuMCpBOX2HFLZX7lS0?e=u95l17" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">16. Preparat Alucynk 500ml</span><div class="ufi-box"></div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAJcSX0lZicRZPDQ6IJPGK2AYcZ9jOSG-tNuMcyLlu5PMg?e=pg0s5S" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">17. Środek Antyadhezyjny (Spray)</span><div class="ufi-box">UFI: 2KXU-J22J-300Q-56XU</div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCRCfwgzX4dQr7wkT0te814AdQjmUEow52Tr6zUzxotYUg?e=bQDAfY" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">18. Roxtec Fire Sealant</span><div class="ufi-box"></div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCbEb3lkdjxT6q9oSoDbXiNAbW5x8ZTqxDk9RdmiLG1c1o?e=W9TiSb" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">19. PU-Środek do pielęgnacji</span><div class="ufi-box"></div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAqRCteLwJcT7e07skjxt0uAYyg3H5_J5ATBoY2z9MU2ug?e=pSo7D3" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">20. Masa bitumiczna Dysperbit</span><div class="ufi-box">UFI: KFJ0-Q02X-J00J-3EJ1 </div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCYXRSiQIAnT4cVr9bGMSx3AdB-8yC0FFpENI39CeVSziI?e=dER15x" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">21. ŚNIEŻKA_SUPERMAL</span><div class="ufi-box">UFI UJ10-2092-2004-RG69</div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCy79HGFpdYSqyK2Gv12yC2Ac-U64sIn1qfGvxapGiUWkU?e=5F1VH6" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">22. Rozcieńczalnik nitrosds</span><div class="ufi-box">UFI P900-E0D9-H007-84C1</div></a></li>
-            </ul>
-        </div>
+            <div class="category-item">
+                <div class="category-header" onclick="toggle(this)"><span>PIANY, SPREJE I CHEMIA (13)</span><span class="arrow">▼</span></div>
+                <ul class="submenu">
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCizG8QKR8yT5pvwUQ3IMrRAV2GnjzM33tKPo-r9rFiPEA?e=5WKECl" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">14. Piana montażowa (Soudal/Tytan)</span><div class="ufi-box">UFI: 1QGX-98Y6-U00R-M23S</div></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQByKYE3obKjQqdb4gMo-YlOAZfMcSzHJ_w_lqKneLTaim4?e=f5CVCI" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">15. Piana uniwersalna STALCO</span></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQBSFp_ceskUT5e0uTqLj-keAUSPDu9-dgCAqIJ1mYq7e5A?e=lj7lq5" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">16. Piana montażowa standard (Pistolet)</span></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCDvfv5Lnn4SpLeSWd5Ru8DAXmewke8x0yT0paduTBc8cE?e=UuTrdC" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">17. Sika-Boom 583</span></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCHUZwDgf9UTLL98DnUwOscAeOWLr7ndglaoAwF9Z2k_Bs?e=QcdZxd" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">18. Cleaner PU (Czyścik)</span><div class="ufi-box">UFI: N700-U0K4-G004-9721</div></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQA9wrnLW9U7TK76CIoaK9uYAUjbpwuMCpBOX2HFLZX7lS0?e=u95l17" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">19. Preparat Alucynk 500ml</span></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAJcSX0lZicRZPDQ6IJPGK2AYcZ9jOSG-tNuMcyLlu5PMg?e=pg0s5S" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">20. Środek Antyadhezyjny (Spray)</span><div class="ufi-box">UFI: 2KXU-J22J-300Q-56XU</div></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCRCfwgzX4dQr7wkT0te814AdQjmUEow52Tr6zUzxotYUg?e=bQDAfY" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">21. Roxtec Fire Sealant</span></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCbEb3lkdjxT6q9oSoDbXiNAbW5x8ZTqxDk9RdmiLG1c1o?e=W9TiSb" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">22. PU-Środek do pielęgnacji</span></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAqRCteLwJcT7e07skjxt0uAYyg3H5_J5ATBoY2z9MU2ug?e=pSo7D3" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">23. Masa bitumiczna Dysperbit</span><div class="ufi-box">UFI: KFJ0-Q02X-J00J-3EJ1</div></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCYXRSiQIAnT4cVr9bGMSx3AdB-8yC0FFpENI39CeVSziI?e=dER15x" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">24. ŚNIEŻKA SUPERMAL</span><div class="ufi-box">UFI: UJ10-2092-2004-RG69</div></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCy79HGFpdYSqyK2Gv12yC2Ac-U64sIn1qfGvxapGiUWkU?e=5F1VH6" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">25. Rozcieńczalnik nitro</span><div class="ufi-box">UFI: P900-E0D9-H007-84C1</div></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQB3Q7tSEwGKTbjEW1mJlWD4AYryzczHnuDjuiNKtKY_Vgw?e=xoRmWQ" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">26. Oleje hydrauliczne Orlen</span></a></li>
+                </ul>
+            </div>
 
-        <div class="category-item">
-            <div class="category-header" onclick="toggle(this)"><span>BUDOWLANE, KOTWY I ŻYWICE (19)</span><span class="arrow">▼</span></div>
-            <ul class="submenu">
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQD65W0Sk5h-S7iPYGfYw2BeAV06HAMOirpss6OBPCvJM6E?e=T0IGTc" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">23. Mieszanka betonowa (Standard)</span><div class="ufi-box"></div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQC8P-xBa2rBQ5FN6mkEMj79AWNoRjjTFaLvMEPj9Vquwck?e=CCtieL" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">24. Drohart - spoiwo drogowe</span><div class="ufi-box">DROHART E 2 UFI: E000-X0R4-W005-TJD9; UFI: 2300-F0EJ-600N-GVYC; DROHART E 3 UFI: 8600-Y03X-H005-47JE; UFI: Q800-F0TA-T00N-TK4G; DROHART E 4 UFI: GC00-Y0GR-4004-FWQJ; UFI: AF00-G064-E00N-489M; DROHART N 4 UFI: KH00-Y0VH-R004-SKVP; UFI: SM00-G0JX-100M-FXFR; DROHART 22,5 UFI: AQ00-008A-C004-491T; UFI: VS00-G0XQ-N00M-SMMV; DROHART 32,5 UFI: KH00-Y0VH-R004-SKVP; UFI: SM00-G0JX-100M-FXFR</div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQBOVkVkguK1TbtabXP24IHYAZdIr5d44OCG52_MekWB-W0?e=RizQiu" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">25. M 15 Zaprawa do spoin</span><div class="ufi-box"></div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCfO05jR_NvQZOZqr349pw5AZoCYNOqEh79enSv2fig69I?e=F87Jdg" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">26. StoPox GH 530 - Komp. A</span><div class="ufi-box">UFI: Y7C2-20F4-300Y-A6TH</div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQA9suXG5n_5RKVZ9h8Q42fJAQwEdSw6bzcK4s3rvEqWXc0?e=zErf27" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">27. Utwardzacz GH 530 - Komp. B</span><div class="ufi-box">UFI: SGJ1-90NS-W00E-TVYX</div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQC22PGRF1bISqkVr19ldmjQAVM_808_w5SkV___6Y7oyzk?e=LQjgRe" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">28. StoPox BB OS - Komp. A</span><div class="ufi-box">UFI: DY05-Y0TT-D001-Y9JQ</div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQBrb-APF5TZT7GrsJI68nGEAfCms0_LQmdd5uAeD8Yc-SA?e=3oVJ2Y" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">29. StoPox BB OS - Komp. B</span><div class="ufi-box">UFI: HP60-T0HF-R00E-NN6H</div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQD5-mBqYIPfRLUn5ruSEDK5AdSfMFheveh4Vjp_yBaKtaU?e=IMrlbI" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">30. Hilti HIT-HY-200-R</span><div class="ufi-box"></div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQBpQJzr68-mQoEMr6MaoYpSAb19uBA30llQwhWUmqziKd4?e=QXHctF" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">31. Hilti HIT-HY-270-PL</span><div class="ufi-box"></div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCVIg_hXW5yQYYFiQwoIZg3AT1f6UmIAIhOwWDZtMagxx8?e=AyPviz" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">32. Weber PG212 (SDS)</span><div class="ufi-box"></div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQBKM-fWy5p_T5sXdOZ8CnPGATkUxiFe4XlHEJ9gSvjuGv0?e=rSwgL1" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">33. Weber REP 756 (SDS)</span><div class="ufi-box"></div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQD69CeViV_-TI8v1F2F0fr1AaaQmqhrKU2xwOoZbsBcD_o?e=Dna3yW" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">34. Weber.tec Superflex D 24 (A)</span><div class="ufi-box"></div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQDzyIhHgJSSSJ1opUwSfWO8AYsRivPR_0C3wHJddBmlNUM?e=d8B3Xg" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">35. Weber.tec 901 (SDS)</span><div class="ufi-box"></div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQDSshb2UENsRoXI5v2228pdAftmfKZtXYgTI2vitnU2jl0?e=wIjjRN" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">36. Weberep KB Duo (SDS)</span><div class="ufi-box"></div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAPosMvXwBjR7PRSz22zFTcATndEiFnPUZSE73W-5zJ8oI?e=pWKlCa" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">37. Karta QB (D46014044)</span><div class="ufi-box"></div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQD65W0Sk5h-S7iPYGfYw2BeAV06HAMOirpss6OBPCvJM6E?e=EEd878" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">38. Mieszanka Betonowa (Lafarge)</span><div class="ufi-box">UFI: R800-F0QH-F008-TYR4</div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQBdWUaIAThnRZTAf0ZKswttAWHa6XVmf6eoja4UAXltrg8?e=QBv47E" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">39. Kem-Kromik™ 6630 High Solid</span><div class="ufi-box"></div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAYlQgW_7OkTZ9akQTCmq2lAaST1ugRXvIuvzbBfK5xLMk?e=4zDOrE" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">40. Kem-Kromik™ 6630 Primer</span><div class="ufi-box"></div></a></li>
-                <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQD689pVSiagTqWPXogZ7VC7AQ7CZ_dIf7l50gfzFZrgMTE?e=55dEzr" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">41. Egzoweld- materiał egzotermiczny</span><div class="ufi-box"></div></a></li>
-            </ul>
-        </div>
+            <div class="category-item">
+                <div class="category-header" onclick="toggle(this)"><span>BUDOWLANE, KOTWY I ŻYWICE (19)</span><span class="arrow">▼</span></div>
+                <ul class="submenu">
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQD65W0Sk5h-S7iPYGfYw2BeAV06HAMOirpss6OBPCvJM6E?e=T0IGTc" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">27. Mieszanka betonowa (Standard)</span></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQC8P-xBa2rBQ5FN6mkEMj79AWNoRjjTFaLvMEPj9Vquwck?e=CCtieL" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">28. Drohart - spoiwo drogowe</span><div class="ufi-box">UFI: E000-X0R4-W005-TJD9; 2300-F0EJ-600N-GVYC...</div></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQBOVkVkguK1TbtabXP24IHYAZdIr5d44OCG52_MekWB-W0?e=RizQiu" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">29. M 15 Zaprawa do spoin</span></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCfO05jR_NvQZOZqr349pw5AZoCYNOqEh79enSv2fig69I?e=F87Jdg" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">30. StoPox GH 530 - Komp. A</span><div class="ufi-box">UFI: Y7C2-20F4-300Y-A6TH</div></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQA9suXG5n_5RKVZ9h8Q42fJAQwEdSw6bzcK4s3rvEqWXc0?e=zErf27" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">31. Utwardzacz GH 530 - Komp. B</span><div class="ufi-box">UFI: SGJ1-90NS-W00E-TVYX</div></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQC22PGRF1bISqkVr19ldmjQAVM_808_w5SkV___6Y7oyzk?e=LQjgRe" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">32. StoPox BB OS - Komp. A</span><div class="ufi-box">UFI: DY05-Y0TT-D001-Y9JQ</div></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQBrb-APF5TZT7GrsJI68nGEAfCms0_LQmdd5uAeD8Yc-SA?e=3oVJ2Y" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">33. StoPox BB OS - Komp. B</span><div class="ufi-box">UFI: HP60-T0HF-R00E-NN6H</div></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQD5-mBqYIPfRLUn5ruSEDK5AdSfMFheveh4Vjp_yBaKtaU?e=IMrlbI" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">34. Hilti HIT-HY-200-R</span></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQBpQJzr68-mQoEMr6MaoYpSAb19uBA30llQwhWUmqziKd4?e=QXHctF" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">35. Hilti HIT-HY-270-PL</span></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQCVIg_hXW5yQYYFiQwoIZg3AT1f6UmIAIhOwWDZtMagxx8?e=AyPviz" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">36. Weber PG212 (SDS)</span></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQBKM-fWy5p_T5sXdOZ8CnPGATkUxiFe4XlHEJ9gSvjuGv0?e=rSwgL1" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">37. Weber REP 756 (SDS)</span></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQD69CeViV_-TI8v1F2F0fr1AaaQmqhrKU2xwOoZbsBcD_o?e=Dna3yW" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">38. Weber.tec Superflex D 24 (A)</span></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQDzyIhHgJSSSJ1opUwSfWO8AYsRivPR_0C3wHJddBmlNUM?e=d8B3Xg" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">39. Weber.tec 901 (SDS)</span></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQDSshb2UENsRoXI5v2228pdAftmfKZtXYgTI2vitnU2jl0?e=wIjjRN" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">40. Weberep KB Duo (SDS)</span></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAPosMvXwBjR7PRSz22zFTcATndEiFnPUZSE73W-5zJ8oI?e=pWKlCa" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">41. Karta QB (D46014044)</span></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQD65W0Sk5h-S7iPYGfYw2BeAV06HAMOirpss6OBPCvJM6E?e=EEd878" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">42. Mieszanka Betonowa (Lafarge)</span><div class="ufi-box">UFI: R800-F0QH-F008-TYR4</div></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQBdWUaIAThnRZTAf0ZKswttAWHa6XVmf6eoja4UAXltrg8?e=QBv47E" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">43. Kem-Kromik™ 6630 High Solid</span></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAYlQgW_7OkTZ9akQTCmq2lAaST1ugRXvIuvzbBfK5xLMk?e=4zDOrE" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">44. Kem-Kromik™ 6630 Primer</span></a></li>
+                    <li><a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQD689pVSiagTqWPXogZ7VC7AQ7CZ_dIf7l50gfzFZrgMTE?e=55dEzr" class="file-item"><span class="pdf-tag">PDF</span><span class="product-name">45. Egzoweld- materiał egzotermiczny</span></a></li>
+                </ul>
+            </div>
 
+        </div>
+        <div class="footer">ENPROM HSEQ</div>
     </div>
-    <div class="footer">ENPROM HSEQ </div>
-</div>
 
 <script>
     function toggle(el) { el.classList.toggle('active'); }
 
-    // INTUICYJNA WYSZUKIWARKA
+    // WYSZUKIWARKA
     document.getElementById('search').addEventListener('input', function(e) {
         let filter = e.target.value.toLowerCase();
         let categories = document.querySelectorAll('.category-item');
@@ -164,14 +169,12 @@
             if (filter.length > 0) {
                 if (hasMatch) {
                     cat.classList.remove('hidden');
-                    cat.querySelector('.submenu').style.display = 'block';
                     cat.querySelector('.category-header').classList.add('active');
                 } else {
                     cat.classList.add('hidden');
                 }
             } else {
                 cat.classList.remove('hidden');
-                cat.querySelector('.submenu').style.display = '';
                 cat.querySelector('.category-header').classList.remove('active');
             }
         });
@@ -180,13 +183,13 @@
     // POBIERANIE MASOWE
     document.getElementById('downloadBtn').addEventListener('click', function() {
         const links = document.querySelectorAll('.file-item');
-        if (confirm("Pobrać wszystkie 36 kart do pamięci telefonu (Offline)?")) {
+        if (confirm("Pobrać wszystkie karty do pamięci (Offline)? Może to zająć chwilę.")) {
             links.forEach((link, index) => {
                 setTimeout(() => {
                     const a = document.createElement('a');
-                    a.href = link.href + "&download=1"; // Wymuszenie pobierania z SharePoint
+                    a.href = link.href + "&download=1";
                     a.setAttribute('download', '');
-                    document.body.endChild(a);
+                    document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
                 }, index * 1200);
