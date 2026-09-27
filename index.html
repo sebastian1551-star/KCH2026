@@ -39,6 +39,14 @@
 
         .update-info { margin-bottom: 15px; font-size: 13px; color: #605e5c; width: 100%; max-width: 550px; }
         .update-value { font-weight: bold; color: var(--text); }
+
+        /* Styl modalu */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; justify-content: center; align-items: center; padding: 15px; box-sizing: border-box; }
+        .modal-content { background: white; width: 100%; max-width: 550px; border-radius: 12px; display: flex; flex-direction: column; max-height: 90vh; overflow: hidden; box-shadow: 0 4px 25px rgba(0,0,0,0.3); }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #f3f2f1; border-bottom: 1px solid #ddd; font-weight: bold; }
+        .modal-close { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--text); }
+        .modal-body { flex: 1; padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+        .modal-body iframe { width: 100%; height: 70vh; border: none; }
     </style>
 </head>
 <body>
@@ -48,15 +56,25 @@
         <span class="update-value">31.08.2026</span>
     </div>
 
-    <!-- Zielony przycisk zapoznania -->
-    <a href="KCH_2026/zapoznanie-z-kartami-charakterystyki.pdf"
-       class="cache-pdf"
-       target="_blank"
-       rel="noopener"
-       style="display: flex; align-items: center; justify-content: center; width: 100%; max-width: 550px; height: 80px; background-color: #107c10; color: white; text-decoration: none; border-radius: 12px; font-weight: bold; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border: 1px solid #0d620d; text-align: center; box-sizing: border-box; padding: 0 15px;">
+    <!-- Zielony przycisk otwierający modal -->
+    <button id="openModalBtn"
+       style="display: flex; align-items: center; justify-content: center; width: 100%; max-width: 550px; height: 80px; background-color: #107c10; color: white; text-decoration: none; border-radius: 12px; font-weight: bold; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border: 1px solid #0d620d; text-align: center; box-sizing: border-box; padding: 0 15px; cursor: pointer;">
         <span style="font-size: 24px; margin-right: 15px;">🌿</span>
         <span style="font-size: 15px;">ZAPOZNANIE Z KARTAMI CHARAKTERYSTYKI</span>
-    </a>
+    </button>
+
+    <!-- Modal (okienko wyskakujące) -->
+    <div id="pdfModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span>Zapoznanie z kartami charakterystyki</span>
+                <button class="modal-close" id="closeModalBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <iframe id="pdfIframe" src="" title="Zapoznanie z kartami charakterystyki"></iframe>
+            </div>
+        </div>
+    </div>
 
     <div class="app-container">
         <a href="tel:112" class="emergency-btn">🆘 RATOWNICTWO: 112</a>
@@ -139,19 +157,58 @@
         });
     });
 
-    // BEZPIECZNE CACHOWANIE PLIKÓW PDF W TLE (BEZ BLOKOWANIA KLIKNIĘCIA)
+    // OBSŁUGA MODALA DLA ZAPOZNANIA Z KARTAMI
+    const modal = document.getElementById('pdfModal');
+    const openBtn = document.getElementById('openModalBtn');
+    const closeBtn = document.getElementById('closeModalBtn');
+    const pdfIframe = document.getElementById('pdfIframe');
+    const pdfUrl = 'KCH_2026/zapoznanie-z-kartami-charakterystyki.pdf';
+
+    openBtn.addEventListener('click', function() {
+        pdfIframe.src = pdfUrl;
+        modal.style.display = 'flex';
+        
+        // Cachowanie w tle
+        if ('caches' in window) {
+            const CACHE_NAME = 'enprom-kch-cache-v1';
+            caches.open(CACHE_NAME).then(cache => {
+                cache.match(pdfUrl).then(response => {
+                    if (!response) {
+                        cache.add(pdfUrl).catch(err => {
+                            console.log('Cachowanie w tle pominięte:', err);
+                        });
+                    }
+                });
+            }).catch(err => {
+                console.log('Cache API niedostępne:', err);
+            });
+        }
+    });
+
+    function closeModal() {
+        modal.style.display = 'none';
+        pdfIframe.src = ''; // zatrzymuje ładowanie/odtwarzanie pliku
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    // BEZPIECZNE CACHOWANIE POZOSTAŁYCH PLIKÓW PDF W TLE
     if ('caches' in window) {
         const CACHE_NAME = 'enprom-kch-cache-v1';
         
-        document.querySelectorAll('.cache-pdf').forEach(link => {
+        document.querySelectorAll('.file-item.cache-pdf').forEach(link => {
             link.addEventListener('click', function(event) {
-                let pdfUrl = this.getAttribute('href');
+                let fileUrl = this.getAttribute('href');
                 
-                // Próbujemy zapisać w tle, nie przerywając działania linku
                 caches.open(CACHE_NAME).then(cache => {
-                    cache.match(pdfUrl).then(response => {
+                    cache.match(fileUrl).then(response => {
                         if (!response) {
-                            cache.add(pdfUrl).catch(err => {
+                            cache.add(fileUrl).catch(err => {
                                 console.log('Cachowanie w tle pominięte:', err);
                             });
                         }
