@@ -139,7 +139,7 @@
         });
     });
 
-    // AUTOMATYCZNE CACHOWANIE PLIKÓW PDF W TLE PO KLIKNIĘCIU
+    // BEZPIECZNE CACHOWANIE PLIKÓW PDF W TLE (BEZ BLOKOWANIA KLIKNIĘCIA)
     if ('caches' in window) {
         const CACHE_NAME = 'enprom-kch-cache-v1';
         
@@ -147,15 +147,17 @@
             link.addEventListener('click', function(event) {
                 let pdfUrl = this.getAttribute('href');
                 
-                // Pobieramy plik w tle i zapisujemy w pamięci podręcznej przeglądarki
+                // Próbujemy zapisać w tle, nie przerywając działania linku
                 caches.open(CACHE_NAME).then(cache => {
                     cache.match(pdfUrl).then(response => {
                         if (!response) {
                             cache.add(pdfUrl).catch(err => {
-                                console.log('Cachowanie w tle pominięte lub niedostępne w tej sesji:', err);
+                                console.log('Cachowanie w tle pominięte:', err);
                             });
                         }
                     });
+                }).catch(err => {
+                    console.log('Cache API niedostępne:', err);
                 });
             });
         });
