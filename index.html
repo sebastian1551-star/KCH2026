@@ -17,9 +17,7 @@
         body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; padding: 10px; display: flex; flex-direction: column; align-items: center; }
         .app-container { width: 100%; max-width: 550px; background: white; padding: 15px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); box-sizing: border-box; }
 
-        .update-header { margin-bottom: 20px; font-family: sans-serif; display: flex; align-items: center; gap: 10px; width: 100%; max-width: 550px; }
-
-        .emergency-btn { background: var(--danger); color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; padding: 16px; border-radius: 8px; font-weight: bold; font-size: 18px; margin-bottom: 12px; border: 2px solid #a4262c; }
+        .emergency-btn { background: var(--danger); color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; padding: 16px; border-radius: 8px; font-weight: bold; font-size: 18px; margin-bottom: 12px; border: 2px solid #a4262c; box-sizing: border-box; }
 
         .search-box { width: 100%; box-sizing: border-box; padding: 15px; margin-bottom: 15px; border: 2px solid var(--primary); border-radius: 8px; font-size: 16px; outline: none; }
 
@@ -39,7 +37,7 @@
         .hidden { display: none !important; }
         .footer { text-align: center; font-size: 11px; color: #a19f9d; margin-top: 25px; padding: 10px; border-top: 1px solid #eee; }
 
-        .update-info { margin-bottom: 15px; font-size: 13px; color: #605e5c; }
+        .update-info { margin-bottom: 15px; font-size: 13px; color: #605e5c; width: 100%; max-width: 550px; }
         .update-value { font-weight: bold; color: var(--text); }
     </style>
 </head>
@@ -50,13 +48,14 @@
         <span class="update-value">31.08.2026</span>
     </div>
 
-    <!-- Główny przycisk zapoznania -->
+    <!-- Zielony przycisk zapoznania -->
     <a href="KCH_2026/zapoznanie-z-kartami-charakterystyki.pdf"
+       class="cache-pdf"
        target="_blank"
        rel="noopener"
-       style="display: flex; align-items: center; justify-content: center; width: 100%; max-width: 550px; height: 80px; background-color: #107c10; color: white; text-decoration: none; border-radius: 12px; font-weight: bold; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border: 1px solid #0d620d; text-align: center;">
+       style="display: flex; align-items: center; justify-content: center; width: 100%; max-width: 550px; height: 80px; background-color: #107c10; color: white; text-decoration: none; border-radius: 12px; font-weight: bold; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border: 1px solid #0d620d; text-align: center; box-sizing: border-box; padding: 0 15px;">
         <span style="font-size: 24px; margin-right: 15px;">🌿</span>
-        <span style="font-size: 16px;">ZAPOZNANIE Z KARTAMI CHARAKTERYSTYKI</span>
+        <span style="font-size: 15px;">ZAPOZNANIE Z KARTAMI CHARAKTERYSTYKI</span>
     </a>
 
     <div class="app-container">
@@ -65,63 +64,61 @@
         <input type="text" id="search" class="search-box" placeholder="Szukaj produktu lub UFI...">
 
         <ul class="file-list">
+            <li class="file-row"><a href="KCH_2026/01-acetylen-air-products.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">1. Acetylen (Air Products)</span></a></li>
+            <li class="file-row"><a href="KCH_2026/02-propan-butan-lpg.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">2. Propan-Butan (LPG)</span><div class="ufi-box">UFI: G200-U0CW-500U-Q6WY; X500-C029-G00A-DJH1; Y800-U0RP-S00T-1W33; V200-UOCW-500W-QC4C</div></a></li>
+            <li class="file-row"><a href="KCH_2026/03-alpen-camping-gas.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">3. Alpen Camping Gas</span><div class="ufi-box">UFI: 98EU-7E51-XC6H-MHFK</div></a></li>
+            <li class="file-row"><a href="KCH_2026/04-tlen-sprezony-techniczny.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">4. Tlen sprężony techniczny</span></a></li>
+            <li class="file-row"><a href="KCH_2026/05-gazy-techniczne-mieszaniny.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">5. Gazy techniczne (Mieszaniny)</span></a></li>
 
-            <li class="file-row"><a href="KCH_2026/01-acetylen-air-products.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">1. Acetylen (Air Products)</span></a></li>
-            <li class="file-row"><a href="KCH_2026/02-propan-butan-lpg.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">2. Propan-Butan (LPG)</span><div class="ufi-box">UFI: G200-U0CW-500U-Q6WY; X500-C029-G00A-DJH1; Y800-U0RP-S00T-1W33; V200-UOCW-500W-QC4C</div></a></li>
-            <li class="file-row"><a href="KCH_2026/03-alpen-camping-gas.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">3. Alpen Camping Gas</span><div class="ufi-box">UFI: 98EU-7E51-XC6H-MHFK</div></a></li>
-            <li class="file-row"><a href="KCH_2026/04-tlen-sprezony-techniczny.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">4. Tlen sprężony techniczny</span></a></li>
-            <li class="file-row"><a href="KCH_2026/05-gazy-techniczne-mieszaniny.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">5. Gazy techniczne (Mieszaniny)</span></a></li>
+            <li class="file-row"><a href="KCH_2026/06-olej-napedowy-on.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">6. Olej napędowy (ON) - Wszystkie rodzaje</span><div class="ufi-box">UFI: A830-6020-C002-Y1UR; CC30-P0RD-N00J-MDET; JS30-706D-6001-X3C4; HF30-60ES-Y001-9R0V</div></a></li>
+            <li class="file-row"><a href="KCH_2026/07-benzyny-handlowe-95-98.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">7. Benzyny handlowe 95/98</span><div class="ufi-box">UFI: 1V30-Q0VS-G00H-KEX6; YY30-70K5-T000-8SH8</div></a></li>
+            <li class="file-row"><a href="KCH_2026/08-base-oil-sn-600.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">8. Base Oil SN 600</span></a></li>
+            <li class="file-row"><a href="KCH_2026/09-shell-omala-gx-460.PDF" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">9. Shell Omala GX 460</span></a></li>
+            <li class="file-row"><a href="KCH_2026/10-wd-40-aerozol.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">10. WD-40 (Aerozol)</span><div class="ufi-box">UFI: HQ60-80EF-FOOK-92TP</div></a></li>
+            <li class="file-row"><a href="KCH_2026/11-denaturat-d7.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">11. Denaturat D7</span><div class="ufi-box">UFI: W8N0-D0NC-W00N-XFFF</div></a></li>
+            <li class="file-row"><a href="KCH_2026/12-malsolwent-1.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">12. Malsolwent 1</span><div class="ufi-box">UFI: 0300-F0N9-P001-GF7N</div></a></li>
+            <li class="file-row"><a href="KCH_2026/13-olej-silnikowy-orlen.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">13. Olej silnikowy Orlen</span></a></li>
+            <li class="file-row"><a href="KCH_2026/14-gear-oil-spx-hp-plus-pl.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">14. GEAR OLI SPX HP+ PL</span></a></li>
+            <li class="file-row"><a href="KCH_2026/15-jcb-hydraulic-fluid-hp-32-pl.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">15. JCB HYDRAULIC FLUID HP 32 PL</span></a></li>
 
-            <li class="file-row"><a href="KCH_2026/06-olej-napedowy-on.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">6. Olej napędowy (ON) - Wszystkie rodzaje</span><div class="ufi-box">UFI: A830-6020-C002-Y1UR; CC30-P0RD-N00J-MDET; JS30-706D-6001-X3C4; HF30-60ES-Y001-9R0V</div></a></li>
-            <li class="file-row"><a href="KCH_2026/07-benzyny-handlowe-95-98.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">7. Benzyny handlowe 95/98</span><div class="ufi-box">UFI: 1V30-Q0VS-G00H-KEX6; YY30-70K5-T000-8SH8</div></a></li>
-            <li class="file-row"><a href="KCH_2026/08-base-oil-sn-600.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">8. Base Oil SN 600</span></a></li>
-            <li class="file-row"><a href="KCH_2026/09-shell-omala-gx-460.PDF" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">9. Shell Omala GX 460</span></a></li>
-            <li class="file-row"><a href="KCH_2026/10-wd-40-aerozol.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">10. WD-40 (Aerozol)</span><div class="ufi-box">UFI: HQ60-80EF-FOOK-92TP</div></a></li>
-            <li class="file-row"><a href="KCH_2026/11-denaturat-d7.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">11. Denaturat D7</span><div class="ufi-box">UFI: W8N0-D0NC-W00N-XFFF</div></a></li>
-            <li class="file-row"><a href="KCH_2026/12-malsolwent-1.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">12. Malsolwent 1</span><div class="ufi-box">UFI: 0300-F0N9-P001-GF7N</div></a></li>
-            <li class="file-row"><a href="KCH_2026/13-olej-silnikowy-orlen.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">13. Olej silnikowy Orlen</span></a></li>
-            <li class="file-row"><a href="KCH_2026/14-gear-oil-spx-hp-plus-pl.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">14. GEAR OLI SPX HP+ PL</span></a></li>
-            <li class="file-row"><a href="KCH_2026/15-jcb-hydraulic-fluid-hp-32-pl.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">15. JCB HYDRAULIC FLUID HP 32 PL</span></a></li>
+            <li class="file-row"><a href="KCH_2026/16-piana-montazowa-soudal-tytan.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">16. Piana montażowa (Soudal/Tytan)</span><div class="ufi-box">UFI: 1QGX-98Y6-U00R-M23S</div></a></li>
+            <li class="file-row"><a href="KCH_2026/17-piana-uniwersalna-stalco.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">17. Piana uniwersalna STALCO</span></a></li>
+            <li class="file-row"><a href="KCH_2026/18-piana-montazowa-standard-pistolet.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">18. Piana montażowa standard (Pistolet)</span></a></li>
+            <li class="file-row"><a href="KCH_2026/19-sika-boom-583.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">19. Sika-Boom 583</span></a></li>
+            <li class="file-row"><a href="KCH_2026/20-cleaner-pu-czyscik.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">20. Cleaner PU (Czyścik)</span><div class="ufi-box">UFI: N700-U0K4-G004-9721</div></a></li>
+            <li class="file-row"><a href="KCH_2026/21-preparat-alucynk-500ml.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">21. Preparat Alucynk 500ml</span></a></li>
+            <li class="file-row"><a href="KCH_2026/22-spray-geodezyjny.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">22. Spray geodezyjny</span></a></li>
+            <li class="file-row"><a href="KCH_2026/23-srodek-antyadhezyjny-spray.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">23. Środek Antyadhezyjny (Spray)</span><div class="ufi-box">UFI: 2KXU-J22J-300Q-56XU</div></a></li>
+            <li class="file-row"><a href="KCH_2026/24-roxtec-fire-sealant.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">24. Roxtec Fire Sealant</span></a></li>
+            <li class="file-row"><a href="KCH_2026/25-pu-srodek-do-pielegnacji.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">25. PU-Środek do pielęgnacji</span></a></li>
+            <li class="file-row"><a href="KCH_2026/26-masa-bitumiczna-dysperbit.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">26. Masa bitumiczna Dysperbit</span><div class="ufi-box">UFI: KFJ0-Q02X-J00J-3EJ1</div></a></li>
+            <li class="file-row"><a href="KCH_2026/27-sniezka-supermal.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">27. ŚNIEŻKA SUPERMAL</span><div class="ufi-box">UFI: UJ10-2092-2004-RG69</div></a></li>
+            <li class="file-row"><a href="KCH_2026/28-rozcienczalnik-nitro.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">28. Rozcieńczalnik nitro</span><div class="ufi-box">UFI: P900-E0D9-H007-84C1</div></a></li>
+            <li class="file-row"><a href="KCH_2026/29-oleje-hydrauliczne-orlen.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">29. Oleje hydrauliczne Orlen</span></a></li>
+            <li class="file-row"><a href="KCH_2026/30-hempatex-hi-build.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">30. Hempatex HI-Build do farb</span></a></li>
+            <li class="file-row"><a href="KCH_2026/31-rozpuszczalnik.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">31. Rozpuszczalnik</span></a></li>
 
-            <li class="file-row"><a href="KCH_2026/16-piana-montazowa-soudal-tytan.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">16. Piana montażowa (Soudal/Tytan)</span><div class="ufi-box">UFI: 1QGX-98Y6-U00R-M23S</div></a></li>
-            <li class="file-row"><a href="KCH_2026/17-piana-uniwersalna-stalco.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">17. Piana uniwersalna STALCO</span></a></li>
-            <li class="file-row"><a href="KCH_2026/18-piana-montazowa-standard-pistolet.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">18. Piana montażowa standard (Pistolet)</span></a></li>
-            <li class="file-row"><a href="KCH_2026/19-sika-boom-583.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">19. Sika-Boom 583</span></a></li>
-            <li class="file-row"><a href="KCH_2026/20-cleaner-pu-czyscik.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">20. Cleaner PU (Czyścik)</span><div class="ufi-box">UFI: N700-U0K4-G004-9721</div></a></li>
-            <li class="file-row"><a href="KCH_2026/21-preparat-alucynk-500ml.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">21. Preparat Alucynk 500ml</span></a></li>
-            <li class="file-row"><a href="KCH_2026/22-spray-geodezyjny.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">22. Spray geodezyjny</span></a></li>
-            <li class="file-row"><a href="KCH_2026/23-srodek-antyadhezyjny-spray.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">23. Środek Antyadhezyjny (Spray)</span><div class="ufi-box">UFI: 2KXU-J22J-300Q-56XU</div></a></li>
-            <li class="file-row"><a href="KCH_2026/24-roxtec-fire-sealant.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">24. Roxtec Fire Sealant</span></a></li>
-            <li class="file-row"><a href="KCH_2026/25-pu-srodek-do-pielegnacji.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">25. PU-Środek do pielęgnacji</span></a></li>
-            <li class="file-row"><a href="KCH_2026/26-masa-bitumiczna-dysperbit.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">26. Masa bitumiczna Dysperbit</span><div class="ufi-box">UFI: KFJ0-Q02X-J00J-3EJ1</div></a></li>
-            <li class="file-row"><a href="KCH_2026/27-sniezka-supermal.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">27. ŚNIEŻKA SUPERMAL</span><div class="ufi-box">UFI: UJ10-2092-2004-RG69</div></a></li>
-            <li class="file-row"><a href="KCH_2026/28-rozcienczalnik-nitro.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">28. Rozcieńczalnik nitro</span><div class="ufi-box">UFI: P900-E0D9-H007-84C1</div></a></li>
-            <li class="file-row"><a href="KCH_2026/29-oleje-hydrauliczne-orlen.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">29. Oleje hydrauliczne Orlen</span></a></li>
-            <li class="file-row"><a href="KCH_2026/30-hempatex-hi-build.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">30. Hempatex HI-Build do farb</span></a></li>
-            <li class="file-row"><a href="KCH_2026/31-rozpuszczalnik.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">31. Rozpuszczalnik</span></a></li>
-
-            <li class="file-row"><a href="KCH_2026/32-mieszanka-betonowa-standard.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">32. Mieszanka betonowa (Standard)</span></a></li>
-            <li class="file-row"><a href="KCH_2026/33-drohart-spoiwo-drogowe.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">33. Drohart - spoiwo drogowe</span><div class="ufi-box">UFI: E000-X0R4-W005-TJD9; 2300-F0EJ-600N-GVYC...</div></a></li>
-            <li class="file-row"><a href="KCH_2026/34-m15-zaprawa-do-spoin.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">34. M 15 Zaprawa do spoin</span></a></li>
-            <li class="file-row"><a href="KCH_2026/35-stopox-gh-530-komp-a.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">35. StoPox GH 530 - Komp. A</span><div class="ufi-box">UFI: Y7C2-20F4-300Y-A6TH</div></a></li>
-            <li class="file-row"><a href="KCH_2026/36-utwardzacz-gh-530-komp-b.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">36. Utwardzacz GH 530 - Komp. B</span><div class="ufi-box">UFI: SGJ1-90NS-W00E-TVYX</div></a></li>
-            <li class="file-row"><a href="KCH_2026/37-stopox-bb-os-komp-a.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">37. StoPox BB OS - Komp. A</span><div class="ufi-box">UFI: DY05-Y0TT-D001-Y9JQ</div></a></li>
-            <li class="file-row"><a href="KCH_2026/38-stopox-bb-os-komp-b.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">38. StoPox BB OS - Komp. B</span><div class="ufi-box">UFI: HP60-T0HF-R00E-NN6H</div></a></li>
-            <li class="file-row"><a href="KCH_2026/39-hilti-hit-hy-200-r.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">39. Hilti HIT-HY-200-R</span></a></li>
-            <li class="file-row"><a href="KCH_2026/40-hilti-hit-hy-270-pl.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">40. Hilti HIT-HY-270-PL</span></a></li>
-            <li class="file-row"><a href="KCH_2026/41-weber-pg212.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">41. Weber PG212 (SDS)</span></a></li>
-            <li class="file-row"><a href="KCH_2026/42-weber-rep-756.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">42. Weber REP 756 (SDS)</span></a></li>
-            <li class="file-row"><a href="KCH_2026/43-weber-tec-superflex-d24-a.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">43. Weber.tec Superflex D 24 (A)</span></a></li>
-            <li class="file-row"><a href="KCH_2026/44-weber-tec-901.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">44. Weber.tec 901 (SDS)</span></a></li>
-            <li class="file-row"><a href="KCH_2026/45-weberep-kb-duo.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">45. Weberep KB Duo (SDS)</span></a></li>
-            <li class="file-row"><a href="KCH_2026/46-karta-qb-d46014044.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">46. Karta QB (D46014044)</span></a></li>
-            <li class="file-row"><a href="KCH_2026/47-mieszanka-betonowa-lafarge.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">47. Mieszanka Betonowa (Lafarge)</span><div class="ufi-box">UFI: R800-F0QH-F008-TYR4</div></a></li>
-            <li class="file-row"><a href="KCH_2026/48-kem-kromik-6630-high-solid.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">48. Kem-Kromik™ 6630 High Solid</span></a></li>
-            <li class="file-row"><a href="KCH_2026/49-kem-kromik-6630-primer.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">49. Kem-Kromik™ 6630 Primer</span></a></li>
-            <li class="file-row"><a href="KCH_2026/50-egzoweld-material-egzotermiczny.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">50. Egzoweld- materiał egzotermiczny</span></a></li>
-            <li class="file-row"><a href="KCH_2026/51-sf6-szesciofluorek-siarki-v8.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">51. SDS 017 ALP_Sześciofluorek siarki (SF6) v8.0</span></a></li>
-            <li class="file-row"><a href="KCH_2026/52-rozpuszczalnik-ftalowy.pdf" class="file-item" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">52. Rozpuszczalnik Ftalowy</span></a></li>
-
+            <li class="file-row"><a href="KCH_2026/32-mieszanka-betonowa-standard.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">32. Mieszanka betonowa (Standard)</span></a></li>
+            <li class="file-row"><a href="KCH_2026/33-drohart-spoiwo-drogowe.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">33. Drohart - spoiwo drogowe</span><div class="ufi-box">UFI: E000-X0R4-W005-TJD9; 2300-F0EJ-600N-GVYC...</div></a></li>
+            <li class="file-row"><a href="KCH_2026/34-m15-zaprawa-do-spoin.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">34. M 15 Zaprawa do spoin</span></a></li>
+            <li class="file-row"><a href="KCH_2026/35-stopox-gh-530-komp-a.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">35. StoPox GH 530 - Komp. A</span><div class="ufi-box">UFI: Y7C2-20F4-300Y-A6TH</div></a></li>
+            <li class="file-row"><a href="KCH_2026/36-utwardzacz-gh-530-komp-b.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">36. Utwardzacz GH 530 - Komp. B</span><div class="ufi-box">UFI: SGJ1-90NS-W00E-TVYX</div></a></li>
+            <li class="file-row"><a href="KCH_2026/37-stopox-bb-os-komp-a.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">37. StoPox BB OS - Komp. A</span><div class="ufi-box">UFI: DY05-Y0TT-D001-Y9JQ</div></a></li>
+            <li class="file-row"><a href="KCH_2026/38-stopox-bb-os-komp-b.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">38. StoPox BB OS - Komp. B</span><div class="ufi-box">UFI: HP60-T0HF-R00E-NN6H</div></a></li>
+            <li class="file-row"><a href="KCH_2026/39-hilti-hit-hy-200-r.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">39. Hilti HIT-HY-200-R</span></a></li>
+            <li class="file-row"><a href="KCH_2026/40-hilti-hit-hy-270-pl.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">40. Hilti HIT-HY-270-PL</span></a></li>
+            <li class="file-row"><a href="KCH_2026/41-weber-pg212.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">41. Weber PG212 (SDS)</span></a></li>
+            <li class="file-row"><a href="KCH_2026/42-weber-rep-756.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">42. Weber REP 756 (SDS)</span></a></li>
+            <li class="file-row"><a href="KCH_2026/43-weber-tec-superflex-d24-a.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">43. Weber.tec Superflex D 24 (A)</span></a></li>
+            <li class="file-row"><a href="KCH_2026/44-weber-tec-901.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">44. Weber.tec 901 (SDS)</span></a></li>
+            <li class="file-row"><a href="KCH_2026/45-weberep-kb-duo.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">45. Weberep KB Duo (SDS)</span></a></li>
+            <li class="file-row"><a href="KCH_2026/46-karta-qb-d46014044.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">46. Karta QB (D46014044)</span></a></li>
+            <li class="file-row"><a href="KCH_2026/47-mieszanka-betonowa-lafarge.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">47. Mieszanka Betonowa (Lafarge)</span><div class="ufi-box">UFI: R800-F0QH-F008-TYR4</div></a></li>
+            <li class="file-row"><a href="KCH_2026/48-kem-kromik-6630-high-solid.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">48. Kem-Kromik™ 6630 High Solid</span></a></li>
+            <li class="file-row"><a href="KCH_2026/49-kem-kromik-6630-primer.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">49. Kem-Kromik™ 6630 Primer</span></a></li>
+            <li class="file-row"><a href="KCH_2026/50-egzoweld-material-egzotermiczny.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">50. Egzoweld- materiał egzotermiczny</span></a></li>
+            <li class="file-row"><a href="KCH_2026/51-sf6-szesciofluorek-siarki-v8.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">51. SDS 017 ALP_Sześciofluorek siarki (SF6) v8.0</span></a></li>
+            <li class="file-row"><a href="KCH_2026/52-rozpuszczalnik-ftalowy.pdf" class="file-item cache-pdf" target="_blank" rel="noopener"><span class="pdf-tag">PDF</span><span class="product-name">52. Rozpuszczalnik Ftalowy</span></a></li>
         </ul>
         <div class="footer">ENPROM HSEQ</div>
     </div>
@@ -141,6 +138,28 @@
             }
         });
     });
+
+    // AUTOMATYCZNE CACHOWANIE PLIKÓW PDF W TLE PO KLIKNIĘCIU
+    if ('caches' in window) {
+        const CACHE_NAME = 'enprom-kch-cache-v1';
+        
+        document.querySelectorAll('.cache-pdf').forEach(link => {
+            link.addEventListener('click', function(event) {
+                let pdfUrl = this.getAttribute('href');
+                
+                // Pobieramy plik w tle i zapisujemy w pamięci podręcznej przeglądarki
+                caches.open(CACHE_NAME).then(cache => {
+                    cache.match(pdfUrl).then(response => {
+                        if (!response) {
+                            cache.add(pdfUrl).catch(err => {
+                                console.log('Cachowanie w tle pominięte lub niedostępne w tej sesji:', err);
+                            });
+                        }
+                    });
+                });
+            });
+        });
+    }
 </script>
 
 </body>
