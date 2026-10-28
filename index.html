@@ -68,6 +68,43 @@
         .legend { font-size: 10px; color: #8a8886; margin: -4px 0 10px; line-height: 1.5; }
         .legend .type-tag { margin: 0 2px 0 0; }
 
+
+        /* PLANOWANE ZMIANY */
+        .changes { margin-bottom: 8px; }
+        .changes.hidden { display: none !important; }
+        .changes-tile { width: 100%; display: flex; align-items: center; gap: 12px; padding: 12px; border: 1px solid #f0c36d; border-radius: 10px; background: #fff8e8; cursor: pointer; font: inherit; color: var(--text); text-align: left; transition: background .15s, border-color .15s; }
+        .changes-tile:hover { background: #fff3d6; border-color: var(--warning); }
+        .changes-tile:focus-visible { outline: 2px solid var(--warning); outline-offset: 2px; }
+        .changes-badge { flex: 0 0 auto; width: 36px; text-align: center; font-weight: 800; font-size: 18px; color: white; background: var(--warning); border-radius: 6px; padding: 4px 0; }
+        .changes-text { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+        .changes-title { font-weight: 700; font-size: 15px; }
+        .changes-sub { font-size: 11px; color: #8a5a00; }
+        .changes-chevron { flex: 0 0 auto; width: 10px; height: 10px; border-right: 2px solid #8a5a00; border-bottom: 2px solid #8a5a00; transform: rotate(45deg); transition: transform .2s; margin-right: 4px; }
+        .changes.open .changes-chevron { transform: rotate(-135deg); }
+        .changes-body { display: none; padding: 10px 2px 2px; }
+        .changes.open .changes-body { display: block; }
+
+        .tl { list-style: none; margin: 0; padding: 0 0 0 4px; }
+        .tl-item { position: relative; padding: 0 0 14px 18px; border-left: 2px solid #e1dfdd; margin-left: 4px; }
+        .tl-item:last-child { padding-bottom: 2px; border-left-color: transparent; }
+        .tl-item::before { content: ""; position: absolute; left: -6px; top: 3px; width: 10px; height: 10px; border-radius: 50%; background: #a19f9d; border: 2px solid white; box-shadow: 0 0 0 1px #c8c6c4; }
+        .tl-item.done::before { background: var(--success); box-shadow: 0 0 0 1px #9fcf9f; }
+        .tl-item.soon::before { background: var(--warning); box-shadow: 0 0 0 1px #f0c36d; }
+        .tl-item.plan::before { background: var(--primary); box-shadow: 0 0 0 1px #9cc8ec; }
+        .tl-head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 2px; }
+        .tl-date { font-weight: 700; font-size: 13px; }
+        .tl-status { font-size: 9px; font-weight: 700; padding: 1px 5px; border-radius: 3px; text-transform: uppercase; letter-spacing: .3px; }
+        .tl-status.done { color: #0b530b; background: #eaf3ea; border: 1px solid #9fcf9f; }
+        .tl-status.soon { color: #8a5a00; background: #fff3d6; border: 1px solid #f0c36d; }
+        .tl-status.plan { color: #004578; background: #eff6fc; border: 1px solid #9cc8ec; }
+        .tl-pl { font-size: 12px; color: var(--text); line-height: 1.35; }
+        .tl-de { font-size: 11px; color: #8a8886; line-height: 1.35; margin-top: 2px; }
+        .changes-note { margin-top: 10px; padding: 8px 10px; background: #f3f2f1; border-radius: 8px; font-size: 11px; color: #605e5c; line-height: 1.45; }
+        .changes-note b { color: var(--text); }
+        .changes-src { margin-top: 6px; font-size: 10px; color: #a19f9d; line-height: 1.4; }
+
+        .update-note { font-size: 11px; color: #8a8886; margin-top: 3px; line-height: 1.4; }
+
         .hidden { display: none !important; }
         .footer { text-align: center; font-size: 11px; color: #a19f9d; margin-top: 15px; padding: 8px; border-top: 1px solid #eee; }
 
@@ -79,7 +116,8 @@
 
     <div class="update-info">
         <span class="update-label">Ostatnia aktualizacja bazy / Letzte Aktualisierung:</span>
-        <span class="update-value">31.08.2026</span>
+        <span class="update-value">28.10.2026</span>
+        <div class="update-note">Dodano kody UFI (GmbH), scalono rejestr PL i DE, oznaczenia M/S oraz planowane zmiany. / UFI-Codes (GmbH) ergänzt, Register PL und DE zusammengeführt, Kennzeichnung M/S und geplante Änderungen hinzugefügt.</div>
     </div>
 
     <div class="app-container">
@@ -93,6 +131,52 @@
             <span class="type-tag s" data-t="S"></span> substancja / Stoff &nbsp;·&nbsp;
             UFI – 16-znakowy kod mieszanin niebezpiecznych / UFI-Code für gefährliche Gemische
         </div>
+
+        <!-- ========== PLANOWANE ZMIANY ========== -->
+        <section class="changes" id="changes">
+            <button type="button" class="changes-tile" aria-expanded="false" aria-controls="body-changes">
+                <span class="changes-badge">!</span>
+                <span class="changes-text">
+                    <span class="changes-title">Planowane zmiany w KCH / Geplante Änderungen</span>
+                    <span class="changes-sub">Najbliższa: 1.11.2026 – nowa klasyfikacja substancji / Nächste: 01.11.2026</span>
+                </span>
+                <span class="changes-chevron"></span>
+            </button>
+            <div class="changes-body" id="body-changes">
+                <ul class="tl">
+                    <li class="tl-item done">
+                        <div class="tl-head"><span class="tl-date">od 1.01.2021</span><span class="tl-status done">obowiązuje / gilt</span></div>
+                        <div class="tl-pl"><b>Nowy format karty (REACH, rozp. 2020/878)</b> – m.in. kod UFI i informacje o właściwościach zaburzających gospodarkę hormonalną. Okres przejściowy zakończył się 31.12.2022. Karty w starym formacie należy wymienić.</div>
+                        <div class="tl-de">Neues SDB-Format (REACH, VO 2020/878): u. a. UFI-Code und endokrine Eigenschaften. Übergangsfrist endete am 31.12.2022. Alte Datenblätter sind zu ersetzen.</div>
+                    </li>
+                    <li class="tl-item done">
+                        <div class="tl-head"><span class="tl-date">od 1.05.2025 / 1.05.2026</span><span class="tl-status done">obowiązuje / gilt</span></div>
+                        <div class="tl-pl"><b>Nowe klasy zagrożeń (CLP): ED, PBT/vPvB, PMT/vPvM</b> – dla nowych substancji (od 1.05.2025) i nowych mieszanin (od 1.05.2026). Nowe karty mogą już zawierać nowe zwroty EUH.</div>
+                        <div class="tl-de">Neue Gefahrenklassen (CLP): ED, PBT/vPvB, PMT/vPvM – für neue Stoffe (ab 01.05.2025) und neue Gemische (ab 01.05.2026).</div>
+                    </li>
+                    <li class="tl-item soon">
+                        <div class="tl-head"><span class="tl-date">1.11.2026</span><span class="tl-status soon">wkrótce / bald</span></div>
+                        <div class="tl-pl"><b>Substancje (S) już obecne na rynku</b> muszą mieć nową klasyfikację (ED, PBT, PMT). Spodziewaj się nowych wersji kart, np. acetylen, tlen, SF6, metanol. Po otrzymaniu nowej karty podmień plik i datę w rejestrze.</div>
+                        <div class="tl-de"><b>Stoffe (S)</b>, die bereits auf dem Markt sind, müssen neu eingestuft sein. Neue SDB-Versionen sind zu erwarten (z. B. Methanol).</div>
+                    </li>
+                    <li class="tl-item plan">
+                        <div class="tl-head"><span class="tl-date">1.01.2028</span><span class="tl-status plan">planowane / geplant</span></div>
+                        <div class="tl-pl"><b>Nowy format etykiet (CLP)</b> – czcionka, układ, zmiany na opakowaniach. Termin przesunięty z 1.07.2026 i 1.01.2027 (rozp. 2025/2439). Zmiany głównie po stronie dostawców.</div>
+                        <div class="tl-de"><b>Neues Etikettenformat (CLP)</b> – Schriftgröße, Layout. Verschoben von 01.07.2026 bzw. 01.01.2027 (VO 2025/2439).</div>
+                    </li>
+                    <li class="tl-item plan">
+                        <div class="tl-head"><span class="tl-date">1.05.2028</span><span class="tl-status plan">planowane / geplant</span></div>
+                        <div class="tl-pl"><b>Mieszaniny (M) już obecne na rynku</b> muszą mieć nową klasyfikację (ED, PBT, PMT). Większość produktów w rejestrze dostanie wtedy nowe karty, np. oleje, farby, piany, kleje, paliwa.</div>
+                        <div class="tl-de"><b>Gemische (M)</b>, die bereits auf dem Markt sind, müssen neu eingestuft sein. Die meisten Produkte erhalten neue SDB.</div>
+                    </li>
+                </ul>
+                <div class="changes-note">
+                    <b>Co to znaczy dla nas:</b> w rejestrze będą się pojawiać nowe wersje kart. Sprawdzaj datę „Akt." przy produkcie i oznaczenie <span class="type-tag m" data-t="M"></span> / <span class="type-tag s" data-t="S"></span>. W razie wątpliwości pytaj dział HSEQ.<br>
+                    <b>Was bedeutet das für uns:</b> Neue SDB-Versionen werden im Register erscheinen. Bitte das Datum „Akt." und die Kennzeichnung M/S beachten. Bei Fragen: HSEQ.
+                </div>
+                <div class="changes-src">Podstawa / Grundlage: CLP (WE) 1272/2008 wraz z rozp. 2023/707, 2024/2865 i 2025/2439; REACH art. 31 i załącznik II (rozp. 2020/878). Stan na 28.10.2026 – terminy mogą się zmienić. / Stand 28.10.2026 – Fristen können sich ändern.</div>
+            </div>
+        </section>
 
         <!-- ========== POLSKA ========== -->
         <section class="country" id="country-pl">
@@ -259,6 +343,14 @@
         sec.querySelector('.country-count').textContent = n;
     });
 
+    // Kafelek „Planowane zmiany" – rozwijany, ukrywany podczas wyszukiwania
+    const changes = document.getElementById('changes');
+    changes.querySelector('.changes-tile').addEventListener('click', () => {
+        const open = !changes.classList.contains('open');
+        changes.classList.toggle('open', open);
+        changes.querySelector('.changes-tile').setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
     function setOpen(sec, open) {
         sec.classList.toggle('open', open);
         sec.querySelector('.country-tile').setAttribute('aria-expanded', open ? 'true' : 'false');
@@ -278,6 +370,7 @@
     // WYSZUKIWARKA / SUCHFUNKTION (nazwa, producent, dystrybutor, data, UFI) – przeszukuje PL i DE naraz
     document.getElementById('search').addEventListener('input', function(e) {
         const filter = e.target.value.toLowerCase().trim();
+        changes.classList.toggle('hidden', filter !== '');
 
         sections.forEach(sec => {
             const rows = sec.querySelectorAll('.file-row');
